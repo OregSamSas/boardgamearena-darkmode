@@ -1,15 +1,17 @@
 :root {
-  --text: #fff;
-
+  --text: #ccc;
+  --main-bg-colour: var(--page-bg);
   --page-bg: #0d1117;
   --header-bg: #161b22;
+  --header-bg2: #101c2e;
+  --header-hover: #20334f;
   --main-content-bg: #1e1e1e;
   --section-bg: #262626;
   --popover-bg: #373737;
   --highlight-bg: #000;
   --input-bg: #666;
   --color-border-default: #30363d;
-  --link: #58a6ff;
+  --link: #62acff;
 }
 
 /* Wood color overwrite */
@@ -19,10 +21,105 @@ html,
   background: var(--page-bg);
   color: var(--text);
 }
+input, select {
+  background-color: var(--input-bg);
+  border-color: var(--color-border-default);
+}
+.player-board.eliminated {
+  background-color: var(--header-bg) !important;
+}
+.board_fake_input {
+  background-color: var(--input-bg);
+  border-color: var(--color-border-default);
+  color: var(--text);
+}
+.textarea_status_empty,
+.readonly_textarea {
+  background-color: var(--input-bg);
+}
+.bga-omni-bar-panel-players__list.svelte-11apq7r > .svelte-11apq7r {
+  background-color: var(--section-bg);
+}
+.statstable th {
+  background-color: #934f10;
+}
+
+
+/* other pages (e.g. Game Homepages)*/
+.bga-page-section > .bga-page-section__content {
+  background-color: var(--header-bg);
+  background-image: linear-gradient(180deg, var(--header-bg2), var(--header-bg));
+}
+.bg-bga-graybg {
+  background-color: #272e38;
+}
+.bga-collapse-icon.svelte-1lkyka4 {
+  background-image: linear-gradient(180deg, var(--popover-bg), var(--popover-bg));
+}
+.bg-bga-graybg-2 {
+  --tw-bg-opacity: 0.1;
+}
+.even\:bg-bga-graybg-2:nth-child(2n) {
+  --tw-bg-opacity: 0.1;
+}
+.bga-game-panel-medias-box__icon.svelte-hc6gll {
+  background-color: var(--header-bg);
+}
+.bga-game-panel-medias-box__icon--active.svelte-hc6gll {
+  background-color: var(--header-bg2);
+}
+.bg-bga-whitebg {
+  background-color: var(--header-bg2);
+}
+.extended_message_hidden::after {
+  background: linear-gradient(180deg,hsla(0,0%,95%,0), var(--section-bg));
+}
+.bga-button-dropdown-item.svelte-1a8iggi:hover {
+  background-color: var(--header-hover);
+}
+.notouch-device .bga-hover-for-list:hover {
+  background: linear-gradient(180deg, var(--header-hover), var(--header-hover));
+}
+.bga_big_input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--color-border-default);
+  color: var(--text);
+}
+#search_icon {
+  color: var(--text);
+}
+.pagesection__title {
+  padding-left: 1rem;
+}
+.standard_popin_underlay {
+  background-color: #333;
+}
+.playerstart_content {
+  background-color: var(--header-bg);
+}
+.progressbar {
+  background-color: var(--header-hover);
+}
+.chatwindowpreviewmsg {
+  background-color: var(--highlight-bg);
+}
 
 a,
 .gamename {
   color: var(--link) !important;
+}
+#logs .timestamp {
+  color: #000;
+}
+.timestamp:hover > .timestamp{
+  background-color: var(--input-bg);
+  color: var(--text);
+}
+.timestamp > .timestamp:hover {
+  color: var(--text);
+}
+.log_replayable:hover {
+  background-color: var(--input-bg);
 }
 
 .row {
@@ -45,7 +142,14 @@ a,
 .gamestart_overlay,
 .bgabutton_gray:hover {
   background: var(--main-content-bg);
+  background-color:  var(--main-content-bg);
   color: var(--text);
+}
+.tabbed_slider_bar_left, .tabbed_slider_bar_right {
+  border-top: 28px solid var(--header-hover);
+}
+.tabbed_slider_bar_barcenter {
+  background-color: var(--header-hover);
 }
 
 /* Header & nav */
@@ -114,7 +218,7 @@ a,
 .bgabutton_gray,
 a.bgabutton_gray {
   color: var(--text);
-  border-color: var(--text);
+  border-color: var(--color-border-default);
 }
 
 .newbgatable th,
@@ -139,33 +243,41 @@ a.agenda-tournament-list__item:hover,
 }
 
 /* Most dropdown boxes and text should be dark */
-.tundra .dijitInputField,
+.tundra .dijitSelect .dijitSelectLabel,
 .tundra .dijitMenu,
+.tundra .dijitInputContainer,
+.tundra .dijitSelect .dijitArrowButton,
 .tundra .dijitMenuBa,
+.tundra .dijitTextBox,
 textarea {
   background: var(--input-bg);
   color: var(--text);
+  
+}
+.tundra .dijitInline,
+.tundra .dijitSelect,
+.tundra .dijitMenu {
+  border-color: var(--color-border-default);
 }
 
 /* Highlighted areas */
 .pageheader_menu_verylarge .pageheader_big_switch,
-.pageheader_menu_verylarge
-  .pageheader_big_switch_dropdown
-  .pageheader_menuitem.pageheader_menuitemselected,
+.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem.pageheader_menuitemselected,
 .bg-white {
   background-color: var(--highlight-bg);
 }
 
 .notouch-device .pageheader_menu_verylarge .pageheader_big_switch:hover,
 .pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch,
-.pageheader_menu_verylarge
-  .pageheader_big_switch_dropdown
-  .pageheader_menuitem {
+.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem {
   background-color: #333;
 }
 
 .whiteblock {
   background: #1e1e1e;
+}
+.notouch-device .ingame_menu_item:hover {
+  background-color: var(--i);
 }
 
 /* Overlay over gamebox while loading */
@@ -179,16 +291,57 @@ textarea {
 }
 
 /* === GAME SPECIFIC STUFF === */
-
 /* == STONE AGE == */
-
 /* Tooltip color (Stoneage) */
 .dijitTooltipContainer {
   background: var(--popover-bg) !important;
   color: var(--text);
 }
-
 /* Overlay for dice related actions (Stoneage) */
 #diceboard {
   background: #000000;
+}
+/* == BANG == */
+/* Popin changes (for Bang)*/
+.bang_popin_wrapper {
+  background-color: rgba(40, 50, 80, .5);
+}
+
+.bang_popin {
+  background-image: linear-gradient(180grad, var(--main-bg-colour), var(--main-bg-colour));
+  border: 3px solid #050057;
+}
+#popin_playersHelp #dialog-roles .dialog-role {
+  background: var(--header-bg2);
+  
+}
+.bang_popin .bang_popin_closeicon {
+  background-color: #050057;
+}
+.bang_popin h2 {
+  color: var(--text);
+}
+#popin_playersHelp #dialog-players .dialog-character {
+  background: var(--header-bg);
+}
+#popin_playersHelp #dialog-players .dialog-character .dialog-player-name {
+  background: var(--header-bg2);
+  border-bottom: 1px solid rgba(0,0,0,.4);
+}
+/* Darker player decks (for Bang) */
+.bang-player .bang-player-container {
+  background-color: rgba(100,100,100, 0.3);
+}
+/*Replacing cards with dark-themed images (for Bang) */
+div.bang-card .card-front, .player-info {
+  background-image: url(https://user-images.githubusercontent.com/101597941/188943859-68ce2855-355c-4246-8bd9-a13967c61b25.png);
+}
+div.bang-card .card-front .card-background {
+  background-image: url(https://user-images.githubusercontent.com/101597941/188963194-3a01bc1b-a6db-4a4b-9811-8fba55906275.png);
+}
+.player-info .player-character-background {
+  background-image: url(https://user-images.githubusercontent.com/101597941/188964471-376668e4-4054-4220-bfea-954fa292128d.png);   
+}
+div#board #table #table-container #deck {
+  background-image: url(https://user-images.githubusercontent.com/101597941/188965553-6c8e99f9-8da8-4c3f-a8ca-5b9b4734379e.png);
 }
