@@ -5,7 +5,7 @@ A dark theme for boardgamearena
 
 ### My Recommendation
 
-I recommend you to install it using (Stylus)[https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne], I will publish it to (userstyles.org)[]
+I recommend you to install it using [Stylus](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne), I will publish it to [userstyles.org]()
 
 ### Other Method
 1. Go to preferences > Advanced
@@ -14,7 +14,7 @@ I recommend you to install it using (Stylus)[https://chrome.google.com/webstore/
 4. Profit!
 
 
-Ideas on what to do next:
+## Ideas on what to do next:
 - Mobile main menu and personal notes
 - The Crew: highlight black cards, darken the big red rectangle
 - 7Wonders: highlight hand rotation
