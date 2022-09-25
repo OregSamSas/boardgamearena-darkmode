@@ -1,5 +1,6 @@
 :root {
   --text: #ccc;
+  --text2: #bbb;
   --main-bg-colour: var(--page-bg);
   --page-bg: #0d1117;
   --header-bg: #161b22;
@@ -7,6 +8,7 @@
   --header-hover: #20334f;
   --main-content-bg: #1e1e1e;
   --section-bg: #262626;
+  --section-bg2: #2a2a2a;
   --popover-bg: #373737;
   --highlight-bg: #000;
   --input-bg: #666;
@@ -21,7 +23,8 @@ html,
   background: var(--page-bg);
   color: var(--text);
 }
-input, select {
+input,
+select {
   background-color: var(--input-bg);
   border-color: var(--color-border-default);
 }
@@ -72,13 +75,16 @@ input, select {
   background-color: var(--header-bg2);
 }
 .extended_message_hidden::after {
-  background: linear-gradient(180deg,hsla(0,0%,95%,0), var(--section-bg));
+  background: linear-gradient(180deg, hsla(0, 0%, 95%, 0), var(--section-bg));
 }
 .bga-button-dropdown-item.svelte-1a8iggi:hover {
   background-color: var(--header-hover);
 }
 .notouch-device .bga-hover-for-list:hover {
   background: linear-gradient(180deg, var(--header-hover), var(--header-hover));
+}
+.notification-holder.notification-unread.svelte-1ikzr2c.svelte-1ikzr2c {
+  color: #888888;
 }
 .bga_big_input {
   background-color: var(--input-bg);
@@ -88,7 +94,7 @@ input, select {
 #search_icon {
   color: var(--text);
 }
-.pagesection__title {
+.pagesection__title, .portlet h3 {
   padding-left: 1rem;
 }
 .standard_popin_underlay {
@@ -100,18 +106,148 @@ input, select {
 .progressbar {
   background-color: var(--header-hover);
 }
+.standard_popin .expanded .achievement {
+  background-color: var(--section-bg);
+  border-color: var(--color-border-default);
+}
+.awards-list__details {
+  background-color: var(--popover-bg);
+}
+
+/*Publisher logos (fixing gamewright's logo)*/
+img[src="https://x.boardgamearena.net/data/gamemedia/sushigo/publisher/0.png?h=1651658852"] {
+  filter: invert(0.9);
+}
+
+/*Game popup on hovering after searching for it
+.flex-1 .flex .flex-col .h-0 .rounded-md {
+  background: rgba(0, 0, 0, 0) linear-gradient(0deg, rgb(10, 10, 10) 0%, rgb(20, 20, 20) 50%) repeat scroll 0% 0%;
+}*/
+
+/*Chat*/
 .chatwindowpreviewmsg {
   background-color: var(--highlight-bg);
 }
+.notouch-device .predefined_message:hover,
+.notouch-device .predefined_textmessage:hover {
+  background-color: var(--highlight-bg);
+}
+.chatinput::placeholder {
+  color: var(--text);
+}
+.roundedbox .roundedboxinner {
+  color: var(--text);
+}
 
-a,
-.gamename {
+/*Contribute to BGA page*/
+.pagesection__content .controlpanelmenu {
+  background-color: var(--section-bg);
+}
+.controlpanelmenu > img {
+  filter: grayscale(1) invert(0.85);
+}
+.controlpanelmenu .subtitle {
+  color: var(--text);
+}
+
+/* Achievments */
+.notouch-device .expanded .achievement:hover {
+  background-color: var(--section-bg);
+}
+.expanded .achievement_container.topleft,
+.achievement_container.top,
+.achievement_container.bottom {
+  filter: invert(0.89);
+}
+.challenge_image {
+  filter: brightness(1.5) grayscale(1);
+}
+
+/* Games Page */
+.bga-game-browser__panel.svelte-x617ll.svelte-x617ll {
+  background: var(--header-bg2);
+}
+.arrow.svelte-ppcln.svelte-ppcln {
+  background-color: rgba(30, 35, 40, 0.8)
+}
+
+/*Arena Seasons*/
+.desktop_version .own-progress-wrap,
+.mobile_version .own-progress-wrap {
+  background-color: var(--section-bg);
+}
+.desktop_version .overall-stats-wrap,
+.mobile_version .overall-stats-wrap {
+  background-image: linear-gradient(180deg, #25252c88, #2a2a3401);
+}
+.own-progress-background {
+  background-image: linear-gradient(180deg, #6c768e, #83749d);
+}
+.desktop_version .own-progress-text {
+  color: var(--text);
+}
+.desktop_version .hof-league-progress-bar-bottom-infos {
+  color: #1e52bc !important;
+}
+.desktop_version .season-progress-bar-wrap,
+.mobile_version .season-progress-bar-wrap {
+  background-color: #000;
+}
+.season-progress-histogram-bar {
+  background-color: #0002
+}
+.histogram-bar-separator {
+  background-image: linear-gradient(0deg, #0002, #0000);
+}
+
+/*Tournaments*/
+a.tournaments-list-result,
+.bga-panel-tournaments__upper-row.svelte-9xptfj.svelte-9xptfj {
+  background-color: var(--section-bg);
+}
+a.tournaments-list-result:hover,
+.bga-panel-tournaments__emblem-holder.svelte-9xptfj.svelte-9xptfj {
+  background-color: var(--popover-bg);
+}
+a.tournaments-list-result {
+  border: 1px solid var(--color-border-default);
+}
+.tournaments-list-result__players {
+  background: var(--color-border-default);
+}
+.tournaments-list-result__date span {
+  color: #555;
+}
+.tournaments-list-result__championship {
+  color: var(--text);
+}
+.tournaments-presentation {
+  background: var(--page-bg);
+}
+.tournaments-mode-presentation__image {
+  background-color: #5551;
+  border: 3px solid var(--color-border-default);
+}
+.tournaments-presentation-status__global,
+.tournaments-mode-presentation__name {
+  color: var(--text);
+}
+.tournaments-mode-presentation__description {
+  color: #aaa;
+}
+.pagesection__content > div {
+  background-color: var(--main-content-bg) !important;
+}
+
+/*Fixing other stuff I don't really remember*/
+a, .gamename {
   color: var(--link) !important;
 }
+/*Timestamp refers to the gamelogs*/
 #logs .timestamp {
   color: #000;
 }
-.timestamp:hover > .timestamp{
+.timestamp:hover > .timestamp {
   background-color: var(--input-bg);
   color: var(--text);
 }
@@ -122,9 +258,104 @@ a,
   background-color: var(--input-bg);
 }
 
+/*Icons: stat icon+laurel wreath+Arena+info*/
+.icon20_stat,
+.icon20.icon_arena {
+  filter: invert(1);
+}
+.panel-learn-game.svelte-1mta182 .panel-learn-game__arena-image.svelte-1mta182 {
+  filter: grayscale(100%) brightness(2.5);
+}
+
+i.fa.fa-lg.fa-info-circle.more_infos {
+  color: var(--text) !important;
+}
+
 .row {
   max-width: 100%;
   padding: 0 1rem;
+}
+
+.bga-link > div[style] {
+  background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/BGA_goodies.png) !important;
+}
+
+/*Gameplay*/
+.icon64_book, .icon32_replaylastmoves, .icon64_cart, .icon64_whiteflag, .icon64_handshake, .icon64_turnbased, .icon64_3d, .icon64_quit, .icon64_back, .icon64_stop {
+  filter: invert(0.8);
+}
+#soundControls {
+  background: var(--popover-bg);
+}
+
+
+/*Tournament table on games*/
+.v2tournament__encounters-step:nth-child(2n+1) {
+  background-color: var(--section-bg);
+}
+.v2tournament__encounters-step {
+  background-color: var(--section-bg2);
+}
+.v2tournament {
+  background-color: var(--main-content-bg);
+}
+.v2tournament--bracketElimination .v2tournament__encounter-player-result {
+  color: var(--input-bg);
+}
+#tournament-module #group_avatar {
+  filter: invert(0.9);
+}
+.v2tournament__players-stats-table {
+  border: 1px solid var(--color-border-default);
+}
+.v2tournament__players-stats-table tr:nth-child(2n+1) td {
+  background: var(--popover-bg);
+}
+.v2tournament__players-stats-table td, .v2tournament__encounter-wrapper {
+  background: var(--section-bg);
+}
+.v2tournament__encounter-wrapper {
+  border: 1px solid var(--color-border-default);
+}
+.v2tournament h4 {
+  background: #3d6c25;
+}
+.v2tournament__encounters-step-title {
+  background: linear-gradient(90deg,#3d6c25,#335323 35%,#2d4d1e);
+}
+.v2tournament__encounters-step-title::after {
+  border-left-color: #2d4d1e;
+}
+.v2tournament__encounter--status-play a.v2tournament__encounter-title {
+  background: #3d6123
+}
+.v2tournament__encounter--status-play a.v2tournament__encounter-title:hover {
+  background: #1f4515;
+}
+.v2tournament__encounter--status-play .v2tournament__encounter-progress-bar > div, 
+a.v2tournament__encounter-title, 
+a.v2tournament__encounter-title:hover {
+  background: #1d8b00
+}
+.v2tournament__encounter-position {
+  background: #1514
+}
+.v2tournament__encounter--status-skipped a.v2tournament__encounter-title{
+  background: #444;
+}
+.v2tournament__encounter--current a.v2tournament__encounter-title {
+  background: #3d609c;
+}
+.v2tournament__encounter--current a.v2tournament__encounter-title:hover {
+  background: #314d7b;
+}
+.v2tournament__encounter--status-play.v2tournament__encounter--current .v2tournament__encounter-progress-bar > div {
+  background: #1e4e79;
+}
+
+/*Premium*/
+.whypremium_icon {
+  filter: invert(0.5);
 }
 
 /* Main content blocks */
@@ -142,14 +373,15 @@ a,
 .gamestart_overlay,
 .bgabutton_gray:hover {
   background: var(--main-content-bg);
-  background-color:  var(--main-content-bg);
+  background-color: var(--main-content-bg);
   color: var(--text);
 }
-.tabbed_slider_bar_left, .tabbed_slider_bar_right {
-  border-top: 28px solid var(--header-hover);
+.tabbed_slider_bar_left,
+.tabbed_slider_bar_right {
+  border-top: 28px solid var(--header-hover) !important;
 }
 .tabbed_slider_bar_barcenter {
-  background-color: var(--header-hover);
+  background-color: var(--header-hover) !important;
 }
 
 /* Header & nav */
@@ -194,6 +426,15 @@ a,
   background-image: none;
 }
 
+/*I noticed it on "You should go premium" warning on premium games*/
+.bubblebanner {
+  background-color: #838322;
+  border: 1px solid #6d6565;
+}
+.bubblebanner::after {
+  border-color: #838322 transparent
+}
+
 /* Page sections */
 .gametable,
 .pagesection h2,
@@ -208,6 +449,10 @@ a,
 #switcher_zone_lobbymode {
   background: var(--section-bg);
   color: var(--text);
+}
+.notouch-device .pageheader_menu_verylarge .pageheader_big_switch:hover #switcher_zone,
+.pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch #switcher_zone {
+  background: var(--section-bg);
 }
 
 .pagesection h3 a {
@@ -241,6 +486,22 @@ a.agenda-tournament-list__item:hover,
 .wannaplayauto_button {
   box-shadow: none;
 }
+.sectiontitle_dropdown_menu {
+  background: var(--section-bg);
+}
+.notouch-device .login-menu-item:hover {
+  background-color: var(--text);
+}
+.notouch-device .bgabutton_gray:hover {
+  background-color: #8e8989;
+  color: #ebebeb;
+}
+.pagesection__content, .portlet__content, .tips__content {
+  background-color: var(--section-bg);
+}
+#headlines-module #follow_us_portlet a span, #news-module #follow_us_portlet a span {
+  color: var(--text);
+}
 
 /* Most dropdown boxes and text should be dark */
 .tundra .dijitSelect .dijitSelectLabel,
@@ -252,7 +513,10 @@ a.agenda-tournament-list__item:hover,
 textarea {
   background: var(--input-bg);
   color: var(--text);
-  
+}
+.tundra .dijitSelectOpened TD,
+.tundra .dijitSelectHover {
+  background-color: var(--input-bg);
 }
 .tundra .dijitInline,
 .tundra .dijitSelect,
@@ -267,10 +531,12 @@ textarea {
   background-color: var(--highlight-bg);
 }
 
-.notouch-device .pageheader_menu_verylarge .pageheader_big_switch:hover,
-.pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch,
-.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem {
+.notouch-device .pageheader_menu_verylarge,
+.pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch {
   background-color: #333;
+}
+.notouch-device .pageheader_menuitem:hover {
+  color: var(--link) !important;
 }
 
 .whiteblock {
@@ -289,6 +555,7 @@ textarea {
 [class^="roundedbox"] {
   background: #1e1e1e !important;
 }
+
 
 /* === GAME SPECIFIC STUFF === */
 /* == STONE AGE == */
@@ -311,9 +578,9 @@ textarea {
   background-image: linear-gradient(180grad, var(--main-bg-colour), var(--main-bg-colour));
   border: 3px solid #050057;
 }
+.bang_popin #dialog-title-container,
 #popin_playersHelp #dialog-roles .dialog-role {
   background: var(--header-bg2);
-  
 }
 .bang_popin .bang_popin_closeicon {
   background-color: #050057;
@@ -326,22 +593,115 @@ textarea {
 }
 #popin_playersHelp #dialog-players .dialog-character .dialog-player-name {
   background: var(--header-bg2);
-  border-bottom: 1px solid rgba(0,0,0,.4);
+  border-bottom: 1px solid rgba(0, 0, 0, .4);
 }
+
 /* Darker player decks (for Bang) */
+div#board #table #table-container,
 .bang-player .bang-player-container {
-  background-color: rgba(100,100,100, 0.3);
+  background-color: rgba(100, 100, 100, 0.3);
+}
+div#hand {
+  background-color: rgba(100, 100, 100, 0.4);
+}
+div.bang-card .card-front .card-copy {
+  text-shadow: 1px 1px #333, -1px -1px 1px #333, -1px 1px 1px #333, 1px -1px 1px #333
+}
+div#hand div#role-container {
+  background-color: #1c1d21;
+}
+.player-board .player-role {
+  filter: invert(1);
+}
+.bang-player .bang-player-container .player-info .player-star,
+.bang-player-board .player-cards .player-hand-card,
+.bang-player .player-cards .player-hand-card {
+  filter: invert(0.8);
+}
+div#hand div#role-container div#role-card div#role-name,
+div#hand div#role-container div#role-card div#role-text {
+  color: var(--input-bg);
 }
 /*Replacing cards with dark-themed images (for Bang) */
-div.bang-card .card-front, .player-info {
-  background-image: url(https://user-images.githubusercontent.com/101597941/188943859-68ce2855-355c-4246-8bd9-a13967c61b25.png);
+div.bang-card .card-front,
+.player-info {
+  background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/dark-bang-cards.png);
 }
 div.bang-card .card-front .card-background {
-  background-image: url(https://user-images.githubusercontent.com/101597941/188963194-3a01bc1b-a6db-4a4b-9811-8fba55906275.png);
+  background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/dark-bang-cards2.png);
 }
 .player-info .player-character-background {
-  background-image: url(https://user-images.githubusercontent.com/101597941/188964471-376668e4-4054-4220-bfea-954fa292128d.png);   
+  background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bang-characters.png);
 }
 div#board #table #table-container #deck {
-  background-image: url(https://user-images.githubusercontent.com/101597941/188965553-6c8e99f9-8da8-4c3f-a8ca-5b9b4734379e.png);
+  background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bang-card-back.png);
+}
+#settings-controls-container .row-data .row-label {
+  color: var(--text);
+}
+
+/* ==SUSHI GO!=== */
+/*Text background*/
+.block_title {
+  background-image: linear-gradient(180deg, hsla(0, 0%, 0%, .75), hsla(0, 0%, 0%, .75));
+}
+.tooltip_card_text {
+  background-color: hsla(0, 0%, 0%, .75);
+}
+.tooltip_card_text table {
+  background-color: var(--section-bg);
+}
+/*Popup*/
+.tableWindow td {
+  color: #5656a4
+}
+.tableWindow tbody tr:hover td {
+  color: #8a8ac6
+}
+.sgresult_header {
+  text-shadow: 3px 0 3px #333, 0 -3px 3px #333, 0 3px 3px #333, -3px 0 3px #333;
+  background-color: #8b6b0d
+}
+
+/* ==LOVE LETTER== */
+.discussion_bubble {
+  background: var(--popover-bg);
+  color: var(--text);
+}
+.discussion_bubble::after {
+  border-color: var(--popover-bg) transparent;
+}
+.player-board.roundedboxdisabled {
+  background-color: var(--header-bg);
+}
+#explanation_card_content,
+#explanation_card_content2 {
+  color: var(--section-bg) !important;
+}
+.playertable_cover {
+  background-color: #0001;
+}
+.outOfTheRound {
+  background-color: #0009;
+}
+
+/*CATAN*/
+#cat_tradeawarenessconfig {
+  background: #4e411f;
+}
+#cat_tradeawareness_currentconf {
+  background: #696559;
+}
+.icon_devcard, .icon_rescard, .icon_path, .icon_army {
+  filter: invert(0.85);
+}
+#player_boards .cat_panel_prim_icons .cat_panel_score {
+  filter: invert(1);
+}
+#player_boards .cat_stock_army, #player_boards .cat_stock_path {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%) invert(0.85);
+}
+.cat_card_title, .cat_card_text, .fa-trash, #cat_playertrade_button_update, .cat_summary_text, .cat_traderate, #cat_summary_tr_title {
+  color: var(--main-bg-colour);
 }
