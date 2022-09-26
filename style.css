@@ -1,3 +1,16 @@
+/* ==UserStyle==
+@name           Dark Mode for BGA
+@namespace      github.com/OregSamSas/boardgamearena-darkmode
+@version        1.2.1
+@description    `Improved Dark mode for Boardgamearena.com`
+@author         Oreg Sam (https://github.com/OregSamSas)
+@license        MIT
+@homepageURL    https://github.com/OregSamSas/boardgamearena-darkmode
+@supportURL     https://github.com/OregSamSas/boardgamearena-darkmode/issues
+@updateURL      https://github.com/OregSamSas/boardgamearena-darkmode
+@preprocessor   uso
+
+==/UserStyle==*/
 :root {
   --text: #ccc;
   --text2: #bbb;
@@ -94,7 +107,8 @@ select {
 #search_icon {
   color: var(--text);
 }
-.pagesection__title, .portlet h3 {
+.pagesection__title,
+.portlet h3 {
   padding-left: 1rem;
 }
 .standard_popin_underlay {
@@ -123,7 +137,6 @@ img[src="https://x.boardgamearena.net/data/gamemedia/sushigo/publisher/0.png?h=1
 .flex-1 .flex .flex-col .h-0 .rounded-md {
   background: rgba(0, 0, 0, 0) linear-gradient(0deg, rgb(10, 10, 10) 0%, rgb(20, 20, 20) 50%) repeat scroll 0% 0%;
 }*/
-
 /*Chat*/
 .chatwindowpreviewmsg {
   background-color: var(--highlight-bg);
@@ -240,7 +253,8 @@ a.tournaments-list-result {
 }
 
 /*Fixing other stuff I don't really remember*/
-a, .gamename {
+a,
+.gamename {
   color: var(--link) !important;
 }
 /*Timestamp refers to the gamelogs*/
@@ -280,8 +294,24 @@ i.fa.fa-lg.fa-info-circle.more_infos {
   background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/BGA_goodies.png) !important;
 }
 
+.agenda-tournament-list__avatar, .icon16_duration, .icon16_nbrplayer {
+  filter: invert(0.85);
+}
+.bga-page-section__stat-bar.svelte-i1k73e[style="background-color: rgb(0, 0, 0); width: 20%;"], .icon16_luck {
+  filter: invert(0.75);
+}
+
 /*Gameplay*/
-.icon64_book, .icon32_replaylastmoves, .icon64_cart, .icon64_whiteflag, .icon64_handshake, .icon64_turnbased, .icon64_3d, .icon64_quit, .icon64_back, .icon64_stop {
+.icon64_book,
+.icon32_replaylastmoves,
+.icon64_cart,
+.icon64_whiteflag,
+.icon64_handshake,
+.icon64_turnbased,
+.icon64_3d,
+.icon64_quit,
+.icon64_back,
+.icon64_stop {
   filter: invert(0.8);
 }
 #soundControls {
@@ -311,7 +341,8 @@ i.fa.fa-lg.fa-info-circle.more_infos {
 .v2tournament__players-stats-table tr:nth-child(2n+1) td {
   background: var(--popover-bg);
 }
-.v2tournament__players-stats-table td, .v2tournament__encounter-wrapper {
+.v2tournament__players-stats-table td,
+.v2tournament__encounter-wrapper {
   background: var(--section-bg);
 }
 .v2tournament__encounter-wrapper {
@@ -321,7 +352,7 @@ i.fa.fa-lg.fa-info-circle.more_infos {
   background: #3d6c25;
 }
 .v2tournament__encounters-step-title {
-  background: linear-gradient(90deg,#3d6c25,#335323 35%,#2d4d1e);
+  background: linear-gradient(90deg, #3d6c25, #335323 35%, #2d4d1e);
 }
 .v2tournament__encounters-step-title::after {
   border-left-color: #2d4d1e;
@@ -332,15 +363,15 @@ i.fa.fa-lg.fa-info-circle.more_infos {
 .v2tournament__encounter--status-play a.v2tournament__encounter-title:hover {
   background: #1f4515;
 }
-.v2tournament__encounter--status-play .v2tournament__encounter-progress-bar > div, 
-a.v2tournament__encounter-title, 
+.v2tournament__encounter--status-play .v2tournament__encounter-progress-bar > div,
+a.v2tournament__encounter-title,
 a.v2tournament__encounter-title:hover {
   background: #1d8b00
 }
 .v2tournament__encounter-position {
   background: #1514
 }
-.v2tournament__encounter--status-skipped a.v2tournament__encounter-title{
+.v2tournament__encounter--status-skipped a.v2tournament__encounter-title {
   background: #444;
 }
 .v2tournament__encounter--current a.v2tournament__encounter-title {
@@ -496,10 +527,13 @@ a.agenda-tournament-list__item:hover,
   background-color: #8e8989;
   color: #ebebeb;
 }
-.pagesection__content, .portlet__content, .tips__content {
+.pagesection__content,
+.portlet__content,
+.tips__content {
   background-color: var(--section-bg);
 }
-#headlines-module #follow_us_portlet a span, #news-module #follow_us_portlet a span {
+#headlines-module #follow_us_portlet a span,
+#news-module #follow_us_portlet a span {
   color: var(--text);
 }
 
@@ -692,16 +726,26 @@ div#board #table #table-container #deck {
 #cat_tradeawareness_currentconf {
   background: #696559;
 }
-.icon_devcard, .icon_rescard, .icon_path, .icon_army {
+.icon_devcard,
+.icon_rescard,
+.icon_path,
+.icon_army {
   filter: invert(0.85);
 }
 #player_boards .cat_panel_prim_icons .cat_panel_score {
   filter: invert(1);
 }
-#player_boards .cat_stock_army, #player_boards .cat_stock_path {
+#player_boards .cat_stock_army,
+#player_boards .cat_stock_path {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%) invert(0.85);
 }
-.cat_card_title, .cat_card_text, .fa-trash, #cat_playertrade_button_update, .cat_summary_text, .cat_traderate, #cat_summary_tr_title {
+.cat_card_title,
+.cat_card_text,
+.fa-trash,
+#cat_playertrade_button_update,
+.cat_summary_text,
+.cat_traderate,
+#cat_summary_tr_title {
   color: var(--main-bg-colour);
 }
