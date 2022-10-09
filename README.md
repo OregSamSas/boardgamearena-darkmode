@@ -5,7 +5,7 @@ A dark theme for boardgamearena
 
 ### My Recommendation
 
-I recommend you to install it using [Stylus](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne), I will publish it to [userstyles.world](https://userstyles.world/)
+I recommend you to install it using [Stylus](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne), I published it on [userstyles.world](https://userstyles.world/): https://userstyles.world/style/6669/bga-dark
 
 ### Other Method
 1. Go to preferences > Advanced
