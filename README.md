@@ -16,7 +16,7 @@ I recommend you to install it using [Stylus](https://chrome.google.com/webstore/
 ## Assets
 ***userstyle.css** [->](https://github.com/OregSamSas/boardgamearena-darkmode/blob/master/userstyle.css) contains the original userstyle with informations about the userstyles, and some costumizations, but it uses the preprocessor of Stylus, so it won't work anywhere
 
-**style.css** [->](https://github.com/OregSamSas/boardgamearena-darkmode/blob/master/style.css) meanwhile contains the core css which would work in any browser without any extensions. This wouldn't give costumizations. 
+**style.css** [->](https://github.com/OregSamSas/boardgamearena-darkmode/blob/master/style.css) meanwhile contains the core css which would work in any browser without any extensions. This wouldn't give costumizations though. 
 
 ## Ideas on what to do next:
 - Mobile main menu and personal notes
