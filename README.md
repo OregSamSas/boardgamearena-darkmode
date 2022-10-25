@@ -1,6 +1,8 @@
 # boardgamearena-darkmode
 A dark theme for boardgamearena
 
+![Screenshot](https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bga-example.png)
+
 ## Installation
 
 ### My Recommendation
