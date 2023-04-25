@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Mode for BGA
 @namespace      github.com/OregSamSas/boardgamearena-darkmode
-@version        1.2.1
+@version        1.2.2
 @description    `Improved Dark mode for Boardgamearena.com`
 @author         Oreg Sam (https://github.com/OregSamSas)
 @license        MIT
@@ -45,11 +45,11 @@
     --header-bg2: (mainTheme==0) ? #100f0f : #101c2e;
     --header-hover: (mainTheme==0) ? #181818 : #20334f;
     --main-content-bg: (mainTheme==0) ? #131313 : (mainTheme==1) ? #1c1d22 : #1d1d1d;
-    --section-bg: (mainTheme==0) ? #151515 : (mainTheme==1) ? #1f1f2a :#262626;
+    --section-bg: (mainTheme==0) ? #151515 : (mainTheme==1) ? #1d1d25 :#262626;
     --section-bg2: (mainTheme==0) ? #141414 : (mainTheme==1) ? #2a2a3a: #2a2a2a;
-    --popover-bg: (mainTheme==0) ? #262525 : #373737;
+    --popover-bg: (mainTheme==0) ? #262525 : (mainTheme==1) ? #34343b :#373737;
     --highlight-bg: (mainTheme==0) ? #050000 :#000;
-    --input-bg: (mainTheme==0) ? #333 : #666;
+    --input-bg: (mainTheme==0) ? #2e2e2e : (mainTheme==1) ? #414141 : #666;
     --color-border-default: (mainTheme==0) ? #202020 : #30363d;
     --link: (mainTheme==0) ? #7f9cbb : #62acff;
     --link2: (mainTheme==0) ? #020c17 : #001d3d;
@@ -59,6 +59,11 @@
 		--ranking2: (mainTheme==0) ? #21233e : (mainTheme=1) ? #1474b8 : #94acd6;
 		--ranking3: (mainTheme==0) ? #1a1641 : (mainTheme=1) ? #1474b8 : #9ba5d0;
   }
+	
+	/*Purchase Premium*/
+	.notouch-device .blockchoice:hover {
+		background-color: var(--popover-bg);
+	}
 	
 	/*Ranking*/
 	.gamerank_apprentice, .gamerank_beginner {
@@ -132,7 +137,7 @@
   #home_doublecards {
     filter: invert(1) hue-rotate(180deg);
   }
-  #home_card_white {
+  #home_card_white, #home_arrow {
     filter: invert(0.85) hue-rotate(196deg);
   }
   #logo_bgg {
@@ -146,6 +151,10 @@
   }
 	.new2017joinpage #page-content {
 		color: var(--text2);
+	}
+	/*Register/Login*/
+	#registerbox .register_field, .loginform_input .login_field {
+		background-color: var(--input-bg);
 	}
   
   /*Tutorial*/
@@ -186,7 +195,7 @@
   .readonly_textarea {
     background-color: var(--input-bg);
   }
-  .bga-omni-bar-panel-players__list.svelte-11apq7r > .svelte-11apq7r {
+  .bga-omni-bar-panel-players__list.svelte-11apq7r > .svelte-11apq7r, .bga-omni-bar-panel-groups__group.svelte-1houta.svelte-1houta {
     background-color: var(--section-bg);
   }
   .statstable th {
@@ -294,6 +303,17 @@
 	.bga-player-avatar__avatar {
 		filter: ((easterEgg=='dim' || easterEgg=='all') ? brightness(0.05) : none);
 	}
+	/*Game Search menu*/
+	div.flex-1.rounded-md, .zoom.svelte-1l7d0sd.svelte1l7d0sd {
+		background: linear-gradient(0deg, var(--section-bg) 0%, var(--header-bg) 50%) repeat scroll 0% 0% !important;
+		color: var(--text);
+	}
+	.zoom.svelte-1l7d0sd.svelte-1l7d0sd {
+		border-color: var(--section-bg)!important;
+	}
+	div[style*="background:"] ~ a[href*="game="] {
+		background: linear-gradient(0deg, rgba(0,0,0,.1) 20%, rgba(0,0,0,.2) 50%) repeat scroll 0% 0% !important;
+	}
 	
 	/*    Game Updates Panel*/
 	.commentcontent .extended_message_hidden::after {
@@ -308,10 +328,25 @@
     filter: invert(0.9);
   }
 	/*New Learn/Play Look*/
+	.bga-game-panel--status-tournaments.svelte-lhkpgx .bga-game-panel__content-divider-background.svelte-lhkpgx, .bga-game-panel--status-quick-play.svelte-lhkpgx .bga-game-panel__content-divider-background.svelte-lhkpgx, .bga-game-panel--status-arena.svelte-lhkpgx .bga-game-panel__content-divider-background.svelte-lhkpgx {
+		background: linear-gradient(var(--section-bg2), rgba(0, 0, 0, 0) 300px);
+	}
+	.title-watermark.svelte-8ifenv {
+ 		opacity:0.04;
+	}
+	.bga-game-panel--status-tournaments.svelte-lhkpgx .bga-game-panel__content-divider-line.svelte-lhkpgx, .bga-game-panel--status-quick-play.svelte-lhkpgx .bga-game-panel__content-divider-line.svelte-lhkpgx, .bga-game-panel--status-arena.svelte-lhkpgx .bga-game-panel__content-divider-line.svelte-lhkpgx {
+		border-top-color: var(--color-border-default);
+	}
+	.panel-block--buttons__right-arrows.svelte-12pdu27 {
+		filter: brightness(0);
+	}
+	.bga-collapse-icon.svelte-1sfzrz0 {
+		background-image: linear-gradient(0deg, var(--section-bg2), var(--section-bg)) !important;
+	}
 	.panel-block--buttons__play-wrapper--firsttime.panel-block--buttons__play-wrapper--glow.svelte-12pdu27 {
 		background-image: linear-gradient(180deg, ((mainTheme==0) ?  #2b2929 : (mainTheme==1) ?  #213742 : #ed9c34 ) calc(100% - 45px), var(--header-bg2) 100%)
 	}
-	.bga-player-count-dropdown__dot > svg > circle, div.bga-dropdown-option > div > div > svg > circle, .bg-gray-200 > div > span > svg > circle, .bga-game-option-item-choice__selector.svelte-smdgd9 > div > svg > circle, .bga-game-option-item-choice__option.svelte-smdgd9 > div > svg > circle, div.text-lg > div > svg > circle {
+	.bga-player-count-dropdown__dot > svg > circle, div.bga-dropdown-option > div > div > svg > circle, .bg-gray-200 > div > span > svg > circle:not(.truncate > span > svg > circle), .bga-game-option-item-choice__selector.svelte-smdgd9 > div > svg > circle, .bga-game-option-item-choice__option.svelte-smdgd9 > div > svg > circle, div.text-lg > div > svg > circle, .bga-game-option-form > div > div > div > div > div > svg > circle {
 		fill: var(--forum-hover); /*The little dot shown on a default setting*/
 	}
 	.text-bga-gray-78, .bga-page-section > .bga-page-section__title {
@@ -342,11 +377,11 @@
 	.bga-game-option-item-choice__option.svelte-smdgd9::after {
 		background-color: var(--color-border-default);
 	}
-  .bga-game-option-item-choice__selector.svelte-smdgd9, .bga-game-option-messages__option-description.svelte-13ocvdr{
+  .bga-game-option-item-choice__selector.svelte-smdgd9, .bga-game-option-messages__option-description.svelte-13ocvdr, .bga-game-option-item-bool.svelte-n7lgf1 {
     background-color: var(--highlight-bg);
     background-image: linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%)
   }
-	.bga-game-option-item-choice__selector.svelte-smdgd9:hover {
+	.bga-game-option-item-choice__selector.svelte-smdgd9:hover, .bga-game-option-item-bool.svelte-n7lgf1:hover {
   	background-image: linear-gradient(180deg, var(--highlight-bg) 0%, var(--section-bg) 30%, var(--highlight-bg) 100%);
 	}
 	.bga-toggle__slider.svelte-xkje4o.svelte-xkje4o {
@@ -381,6 +416,31 @@
 		background: linear-gradient(to top, rgb(121, 121, 121) 0%, rgb(110, 110, 110) 100%);
 	} .bga-invite-status-button.svelte-49cjpw, .bga-invite-status-button__element.svelte-49cjpw {
 		background-color: var(--popover-bg);
+	}
+	
+	/*Checkboxes*/
+	.bga-checkbox.svelte-1pi23ob.svelte-1pi23ob {
+		background-color: var(--color-border-default);
+	}
+	.bga-checkbox--size-lg {
+		--background-color: #024297 !important;
+		--check-color: #4875f1 !important;
+		--background-color-faded: #2572d680 !important;
+	}
+	.svelte-1pi23ob.bga-checkbox--size-md[style*="#143453"] {
+		--background-color: #1e4c7b !important;
+		--check-color: #000 !important;
+		--background-color-faded: #1e4c7b80 !important;
+	} .svelte-1pi23ob.bga-checkbox--size-md[style*="#4A5F72"] {
+		--background-color: #5c7992 !important;
+		--check-color: #000 !important;
+		--background-color-faded: #4d5f6f !important; 
+	} .svelte-1pi23ob.bga-checkbox--size-md[style*="#328096"], .svelte-1pi23ob.bga-checkbox--size-md[style*="#9E7F42"], .svelte-1pi23ob.bga-checkbox--size-md[style*="#5D6D50;"], .svelte-1pi23ob.bga-checkbox--size-md[style*="#744289"] {
+		--check-color: #000 !important;
+	} .svelte-1pi23ob.bga-checkbox--size-md[style*="#66DF00"] {
+		--background-color: #0f7900 !important;
+		--check-color: #06c41e !important;
+		--background-color-faded: #37700780 !important;
 	}
 	
   
@@ -491,8 +551,17 @@
   .histogram-bar-separator {
     background-image: linear-gradient(0deg, #0002, #0000);
   }
+	a[style*="color:white"] > i.fa {
+		color: white !important;
+	}
   
   /*Tournaments*/
+	.bga-tournament-list-item__upper-row.svelte-1jhmrwa.svelte-1jhmrwa {
+		background-color: var(--section-bg2);
+	}
+	.bga-tournament-list-item__emblem-holder.svelte-1jhmrwa.svelte-1jhmrwa {
+		background-color: var(--color-border-default);
+	}
   a.tournaments-list-result,
   .bga-panel-tournaments__upper-row.svelte-9xptfj.svelte-9xptfj {
     background-color: var(--section-bg);
@@ -870,9 +939,9 @@
   .tundra .dijitSelect .dijitArrowButton,
   .tundra .dijitMenuBa,
   .tundra .dijitTextBox,
-  textarea {
+  textarea, input, select {
     background: var(--input-bg);
-    color: var(--text);
+    color: var(--text) !important;
   }
   .tundra .dijitSelectOpened TD,
   .tundra .dijitSelectHover {
@@ -883,6 +952,10 @@
   .tundra .dijitMenu {
     border-color: var(--color-border-default);
   }
+	
+	.text-gray-invitation.svelte-ebwhm1.svelte-ebwhm1 {
+		color: var(--text3) !important;
+	}
   
   /* Highlighted areas */
   .pageheader_menu_verylarge .pageheader_big_switch,
@@ -893,7 +966,7 @@
   
   .notouch-device .pageheader_menu_verylarge,
   .pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch {
-    background-color: #333;
+    background-color: var(--section-bg);
   }
   .notouch-device .pageheader_menuitem:hover {
     color: var(--link) !important;
@@ -1279,6 +1352,9 @@
 		background-color: var(--popover-bg);
 		background-image: linear-gradient(to bottom, #333 0%, var(--popover-bg) 80%);
 	}
+	#findfriend:focus, #findgroup:focus, #findplayer:focus {
+		color: var(--text);
+	}
 	
 	/*Posts*/
 	.postbody {
@@ -1297,6 +1373,9 @@
 	}
 	
 	/*User Control Panel*/
+	dl.details dt{
+		color: var(--text);
+	}
 	.panel-container .panel {
 		background-color: var(--section-bg);
 	}
@@ -1557,5 +1636,23 @@
 	/* ==CAT CAFE==*/
 	.ctc_psb_footprint_available, .ctc_psb_footprint_used {
 		filter: invert(0.8) hue-rotate(180deg) saturate(2) contrast(22);
+	}
+	
+	/* ==SUSHI GO PARTY== */
+	#sushigoparty_menu_wrapper {
+		background-color: #222222;
+	}
+	#sushigoparty_menu_wrapper > h1 > span {
+		color: #aaa;
+	}
+	
+	/* ==HANABI== */
+	#clues_avail {
+		background-color: #222;
+	}
+	
+	/* ==LEGENDS OF HELLAS*/
+	div.dijitTooltipContainer.dijitTooltipContents > .midSizeDialog > img {
+		filter: invert(1);
 	}
 }
