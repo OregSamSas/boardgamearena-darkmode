@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Mode for BGA
 @namespace      github.com/OregSamSas/boardgamearena-darkmode
-@version        1.2.2
+@version        1.2.4
 @description    `Improved Dark mode for Boardgamearena.com`
 @author         Oreg Sam (https://github.com/OregSamSas)
 @license        MIT
@@ -170,8 +170,8 @@
 	body::-webkit-scrollbar-track {
 		background: var(--page-bg) !important;
 	}
-	body::-webkit-scrollbar-thumb !important{
-		background: var(--text);
+	body::-webkit-scrollbar-thumb {
+		background: var(--text) !important;
 	}
   html,
   .head_info,
@@ -348,7 +348,7 @@
 		background-image: linear-gradient(0deg, var(--section-bg2), var(--section-bg)) !important;
 	}
 	.panel-block--buttons__play-wrapper--firsttime.panel-block--buttons__play-wrapper--glow.svelte-12pdu27 {
-		background-image: linear-gradient(180deg, ((mainTheme==0) ?  #2b2929 : (mainTheme==1) ?  #213742 : #ed9c34 ) calc(100% - 45px), var(--header-bg2) 100%)
+		background-image: linear-gradient(180deg, ((mainTheme==0) ?  #2b2929 : (mainTheme==1) ?  #213742 : #ed9c34 ) calc(100% - 45px), var(--header-bg2) 100%);
 	}
 	.bga-player-count-dropdown__dot > svg > circle, div.bga-dropdown-option > div > div > svg > circle, .bg-gray-200 > div > span > svg > circle:not(.truncate > span > svg > circle), .bga-game-option-item-choice__selector.svelte-smdgd9 > div > svg > circle, .bga-game-option-item-choice__option.svelte-smdgd9 > div > svg > circle, div.text-lg > div > svg > circle, .bga-game-option-form > div > div > div > div > div > svg > circle {
 		fill: var(--forum-hover); /*The little dot shown on a default setting*/
@@ -664,6 +664,9 @@
   }
   
   /*Icons: stat icon+laurel wreath+Arena+info*/
+	#pageheader_mobile_switcher_wrap_lobbymode .pageheader_big_switch_icon .fa-cog {
+		color: #81aab4;
+	}
 	div.palmares_game > img[src*="https://x.boardgamearena.net/data/gamemedia/sechsnimmt/icon/default.png"], div.palmares_game > img[src="https://x.boardgamearena.net/data/gamemedia/hive/icon/default.png"] {
 		filter: invert(0.9) hue-rotate(170deg);
 	}
@@ -835,7 +838,6 @@
   }
   
   /* Dialog boxes, modals etc. */
-  .pagesection,
   .portlet,
   .tips,
   .player-board,
@@ -851,13 +853,8 @@
   #pageheader_mobile_switcher_gamemode,
   #pageheader_mobile_switcher,
   #pageheader_mobile_switcher_lobbymode,
-  #pageheader_simple,
-  #pageheader_arena,
-  #pageheader_tournament,
-  #pageheader_realtime,
-  #pageheader_async,
-  #pageheader_automatic,
-  #pageheader_manual,
+	.pageheader_big_switch_dropdown,
+	.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem,
   .chatwindowavatar .avatarwrap,
   .gamelist_item {
     background-color: var(--popover-bg);
@@ -867,6 +864,15 @@
     /* fix for overlay image comment section*/
     background-image: none;
   }
+	
+	/*Fix Firefox rounding issues or smg on main page, hovering over news*/
+	.notouch-device .newsblock:hover .newsblockshadow {
+		top: .5%;
+	} .mininewsblock .newsblockshadow, .mobile_version .newsblock .newsblockshadow {
+		top: 50.5%;
+	} .newsblockshadow {
+		top: 70.5%;
+	}
   
   /*I noticed it on "You should go premium" warning on premium games*/
   .bubblebanner {
@@ -1028,10 +1034,9 @@
 	}
   
   /* Highlighted areas */
-  .pageheader_menu_verylarge .pageheader_big_switch,
   .pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem.pageheader_menuitemselected,
   .bg-white {
-    background-color: var(--highlight-bg);
+    background-color: var(--highlight-bg) !important;
   }
   
   .notouch-device .pageheader_menu_verylarge,
