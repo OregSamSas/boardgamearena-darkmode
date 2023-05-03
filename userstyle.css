@@ -1,4 +1,4 @@
-/* ==UserStyle==
+==UserStyle==
 @name           Dark Mode for BGA
 @namespace      github.com/OregSamSas/boardgamearena-darkmode
 @version        1.2.4
@@ -40,26 +40,90 @@
     --text3: (mainTheme==0) ? #adadad : #ebebeb;
 		--text4: #999;
     --main-bg-colour: var(--page-bg);
-    --page-bg: (mainTheme==0) ? #080808 : (mainTheme==1) ? #0d1117 : (mainTheme==2) ? #13181b : #16100e;
-    --page-bg2: (mainTheme==0) ? #111: (mainTheme==1) ? #11161d : (mainTheme==2) ? #11161d : #11161d;
-    --header-bg: (mainTheme==0) ? #111010 : (mainTheme==1) ? #161b22 : (mainTheme==2) ? #171b21 : #161b22;
-    --header-bg2: (mainTheme==0) ? #100f0f : (mainTheme==1) ? #101c2e : (mainTheme==2) ? #1c2128 : #101c2e;
-    --header-hover: (mainTheme==0) ? #181818 : (mainTheme==1) ? #20334f : (mainTheme==2) ? #283136 : #20334f;
-    --main-content-bg: (mainTheme==0) ? #131313 : (mainTheme==1) ? #1c1d22 : (mainTheme==2) ? #1e2023 : #1d1d1d;
-    --section-bg: (mainTheme==0) ? #151515 : (mainTheme==1) ? #1d1d25 : (mainTheme==2) ? #212428 : #262626;
-    --section-bg2: (mainTheme==0) ? #141414 : (mainTheme==1) ? #2a2a3a : (mainTheme==2) ? #282e34 : #2a2a2a;
-    --popover-bg: (mainTheme==0) ? #262525 : (mainTheme==1) ? #34343b : (mainTheme==2) ? #313437 : #373737;
-    --highlight-bg: (mainTheme==0) ? #050000 : (mainTheme==2) ? #101313 : #000;
-    --input-bg: (mainTheme==0) ? #2e2e2e : (mainTheme==1) ? #414141 : (mainTheme==2) ? #404545 : #666;
-    --color-border-default: (mainTheme==0) ? #202020 : (mainTheme==2) ? #353636 : #30363d;
-    --link: (mainTheme==0) ? #7f9cbb : (mainTheme==2) ? #52bbdd : #62acff;
-    --link2: (mainTheme==0) ? #020c17 : (mainTheme==2) ? #002d3d : #001d3d;
-		--forum-hover: (mainTheme==0) ? #181818 : (mainTheme==1) ? #27343a : #333;
+    --page-bg: (mainTheme==0) ? #080808 : (mainTheme==1) ? #0d1117 : (mainTheme==2) ? #13181b : (mainTheme==4) ? #221815 : #16100e;
+    --page-bg2: (mainTheme==0) ? #111: (mainTheme==1) ? #11161d : (mainTheme==2) ? #11161d : (mainTheme==4) ? #201611 : #11161d;
+    --header-bg: (mainTheme==0) ? #111010 : (mainTheme==1) ? #161b22 : (mainTheme==2) ? #171b21 : (mainTheme==4) ? #31231e : #161b22;
+    --header-bg2: (mainTheme==0) ? #100f0f : (mainTheme==1) ? #101c2e : (mainTheme==2) ? #1c2128 : (mainTheme==4) ? #36251e : #101c2e;
+    --header-hover: (mainTheme==0) ? #1f1f1f : (mainTheme==1) ? #20334f : (mainTheme==2) ? #283136 : (mainTheme==4) ? #463122 : #20334f;
+    --main-content-bg: (mainTheme==0) ? #131313 : (mainTheme==1) ? #1c1d22 : (mainTheme==2) ? #1e2023 : (mainTheme==4) ? #251c18 : #1d1d1d;
+    --section-bg: (mainTheme==0) ? #151515 : (mainTheme==1) ? #1d1d25 : (mainTheme==2) ? #212628 : (mainTheme==4) ? hsl(10, 20%, 14%) : #262626;
+    --section-bg2: (mainTheme==0) ? #141414 : (mainTheme==1) ? #2a2a3a : (mainTheme==2) ? #283034 : (mainTheme==4) ? #2d2625 : #2a2a2a;
+    --popover-bg: (mainTheme==0) ? #262525 : (mainTheme==1) ? #34343b : (mainTheme==2) ? #313737 : (mainTheme==4) ? #373331 : #373737;
+    --highlight-bg: (mainTheme==0) ? #050000 : (mainTheme==2) ? #101313 : (mainTheme==4) ? #1c1613  : #000;
+    --input-bg: (mainTheme==0) ? #2e2e2e : (mainTheme==1) ? #414141 : (mainTheme==2) ? #404545 : (mainTheme==4) ? #403b3b : #666;
+    --color-border-default: (mainTheme==0) ? #202020 : (mainTheme==2) ? #353636 : (mainTheme==4) ? #2d2927  : #30363d;
+    --link: (mainTheme==0) ? #7f9cbb : (mainTheme==2) ? #52bbdd : (mainTheme==4) ? #d76b12 : #62acff;
+    --link2: (mainTheme==0) ? #020c17 : (mainTheme==2) ? #002d3d : (mainTheme==4) ? #b24411 : #001d3d;
+		--forum-hover: (mainTheme==0) ? #181818 : (mainTheme==1) ? #27343a : (mainTheme==2) ? #233331 : (mainTheme==4) ? #3e2518 : #333;
 		--ranking0: (mainTheme==0) ? #324f5a : (mainTheme=1) ? #146eb8 : #74bed1;
 		--ranking1: (mainTheme==0) ? #26334c : (mainTheme=1) ? #1474b8 : #84b8de;
 		--ranking2: (mainTheme==0) ? #21233e : (mainTheme=1) ? #1474b8 : #94acd6;
 		--ranking3: (mainTheme==0) ? #1a1641 : (mainTheme=1) ? #1474b8 : #9ba5d0;
   }
+	
+	/*Lantern Theme Special*/
+	if (mainTheme==4) {
+		.bgabutton_blue, .bga-popup-modal__header.svelte-1gmp0d8.svelte-1gmp0d8, #faq_topbutton {
+			background: linear-gradient(#8c370d, #592308);
+		}
+		.bgabutton_blue:hover {
+			background: linear-gradient(180deg,#a3410f,#652308);
+		}
+		.bga-player-menu__tab.svelte-vu0owz.svelte-vu0owz, #lobby_invite_friend_zone {
+			color: #b85314;
+		}
+		.bga-player-menu__tab.svelte-vu0owz.svelte-vu0owz:hover, .bga-player-menu__tab--active.svelte-vu0owz.svelte-vu0owz {
+			color: #a72305;
+		}
+		.bg-bga-link-active, .search-item--game.svelte-4occeg {
+			background-color: #a72305;
+		}
+		span[style*="color: #00aaa5"], .playername, .text-bga-cyan {
+			color: #e64118 !important;
+		}
+		.bga-game-panel-elo-box__bgborder.svelte-6i3orp.svelte-6i3orp {
+			background: linear-gradient(#7a474700 0%, #7a2525 36%, #7a2525 64%, #25477a00 100%);
+		}
+		.bga-game-panel-elo-box__bginner.svelte-6i3orp.svelte-6i3orp {
+			background: linear-gradient(#56070700 0%, #560e07aa 36%, #560707aa 64%, #072c5600 100%);
+		}
+		.bga-dropdown.svelte-7mom1l .bga-dropdown-button-split.svelte-7mom1l[style*="border-bottom-color: rgb(25"] {
+			background: rgba(0, 0, 0, 0) linear-gradient(0deg,#652308,#a3410f) repeat scroll 0% 0% !important;
+			border-bottom-color: #6b1805 !important;
+		}
+		.pageheader_menuitembar, .icon_plus, #lobby_add_friend_button .lobby_invite_friend_avatar, #lobby_invite_more_friend_button .lobby_invite_friend_avatar {
+			background: var(--link);
+		}
+		.search-item--game.svelte-4occeg:hover {
+			background-color: #851e06;
+		}
+		.search-item--player.svelte-4occeg {
+			background-color: #9a431f;
+		}
+		.search-item--player.svelte-4occeg:hover {
+			background-color: #702f11;
+		}
+		.search-item--group.svelte-4occeg {
+			background-color: #7d520d;
+		}
+		.search-item--group.svelte-4occeg:hover {
+			background-color: #684a1d;
+		}
+		.bga-tournament-list-item__lower-row.svelte-1jhmrwa.svelte-1jhmrwa {
+			background-color: #6a1209;
+		}
+		.bga-tournament-list-item__lower-row.svelte-1jhmrwa > div.svelte-1jhmrwa > div {
+			background-color: #be2d0b;
+		}
+		.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem.pageheader_menuitemselected {
+			color: var(--link2);
+		}
+		
+		/*Forum*/
+		.button:hover .icon, .button-secondary:hover {
+			color: #f97a11;
+		}
+	}
 	
 	/*Purchase Premium*/
 	.notouch-device .blockchoice:hover {
@@ -83,6 +147,10 @@
 	/*Invites*/
 	#expected_table_banners .expected_banner, #tournament_inprogress_banners .expected_banner {
 		background-color: var(--popover-bg);
+	}
+	/*Hotseat*/
+	.bga-textfield.svelte-qnbmjv.svelte-qnbmjv {
+		background-color: var(--input-bg);
 	}
 	
   /*Fix svg rounding issues or idk*/
@@ -178,6 +246,7 @@
   .bgabutton_gray {
     background: var(--page-bg);
     color: var(--text);
+		scrollbar-color: var(--header-hover) var(--header-bg);
   }
   input,
   select {
@@ -205,7 +274,7 @@
   
   
   /* other pages (e.g. Game Homepages)*/
-	img[src="https://x.boardgamearena.net/data/grouparms/noimage_tournament_50.png"] {
+	img[src="https://x.boardgamearena.net/data/grouparms/noimage_tournament_50.png"], div[style*="url(https://x.boardgamearena.net/data/grouparms/noimage_tournament_50.png)"] {
 		filter: invert(.9);
 	}
 	div.bga-ranking-entry:nth-child(2n), .panel-arena-history-entry.svelte-131g9yy:nth-child(2n+1) {
@@ -332,8 +401,14 @@
     filter: invert(0.9);
   }
 	/*New Learn/Play Look*/
+	.bga-invite-player-modal__table-link.svelte-12bycfo {
+		background: var(--popover-bg) !important;
+	}
+	.bga-lobby-player-slot__modal-top--admin.svelte-1669tmd .bga-lobby-player-slot__modal-top-avatar-bg.svelte-1669tmd, .bg-bga-link {
+		background-color: ((mainTheme==4) ? var(--link2) : #1a57a7);
+	}
 	.bga-game-panel--status-tournaments.svelte-lhkpgx .bga-game-panel__content-divider-background.svelte-lhkpgx, .bga-game-panel--status-quick-play.svelte-lhkpgx .bga-game-panel__content-divider-background.svelte-lhkpgx, .bga-game-panel--status-arena.svelte-lhkpgx .bga-game-panel__content-divider-background.svelte-lhkpgx {
-		background: linear-gradient(var(--section-bg2), rgba(0, 0, 0, 0) 300px);
+		background: linear-gradient(((mainTheme==4) ? #322 : var(--popover-bg)), rgba(0, 0, 0, 0) 300px);
 	}
 	.title-watermark.svelte-8ifenv {
  		opacity:0.04;
@@ -348,7 +423,7 @@
 		background-image: linear-gradient(0deg, var(--section-bg2), var(--section-bg)) !important;
 	}
 	.panel-block--buttons__play-wrapper--firsttime.panel-block--buttons__play-wrapper--glow.svelte-12pdu27 {
-		background-image: linear-gradient(180deg, ((mainTheme==0) ?  #2b2929 : (mainTheme==1) ?  #213742 : #ed9c34 ) calc(100% - 45px), var(--header-bg2) 100%);
+		background-image: linear-gradient(180deg, ((mainTheme==0) ?  #2b2929 : (mainTheme==1) ?  #213742 : var(--popover-bg) ) calc(100% - 45px), var(--header-bg2) 100%);
 	}
 	.bga-player-count-dropdown__dot > svg > circle, div.bga-dropdown-option > div > div > svg > circle, .bg-gray-200 > div > span > svg > circle:not(.truncate > span > svg > circle), .bga-game-option-item-choice__selector.svelte-smdgd9 > div > svg > circle, .bga-game-option-item-choice__option.svelte-smdgd9 > div > svg > circle, div.text-lg > div > svg > circle, .bga-game-option-form > div > div > div > div > div > svg > circle {
 		fill: var(--forum-hover); /*The little dot shown on a default setting*/
@@ -581,6 +656,18 @@
 	}
   
   /*Tournaments*/
+	.text-gray-500:hover {
+		background-color: var(--forum-hover) !important;
+	}
+	.tournaments-list-result__indicator, .gametable_colored_indicator {
+		filter: invert(.8) hue-rotate(180deg) !important;
+	}
+	.bg-bga-table-tb {
+		background-color: hsl(37, 97%, 28%);
+	}
+	.bg-bga-table-rt {
+		background-color: hsl(74, 33%, 28%)
+	}
 	.bga-tournament-list-item__upper-row.svelte-1jhmrwa.svelte-1jhmrwa {
 		background-color: var(--section-bg2);
 	}
@@ -621,9 +708,9 @@
   .tournaments-mode-presentation__description {
     color: #aaa;
   }
-  .pagesection__content > div {
+  /*.pagesection__content > div {
     background-color: var(--main-content-bg) !important;
-  }
+  }*/
   div.pagesection__content[style="background: white"] {
     background-color: var(--section-bg) !important;
   }
@@ -643,11 +730,14 @@
 		filter: invert(0.6);
 	}
   
-  /*Fixing other stuff I don't really remember*/
-  a,
-  .gamename {
+  /*Fixing texts*/
+  a, .gamename, .bga-link, .text-bga-link, .text-bga-blue, .text-bga-gamename, .bga-dropdown-button.svelte-7mom1l.svelte-7mom1l {
     color: var(--link) !important;
   }
+	.text-gray-500, .text-gray-600{
+		color: var(--text2);
+	}
+	
   /*Timestamp refers to the gamelogs*/
   #logs .timestamp {
     color: #000;
@@ -796,6 +886,33 @@
   .whypremium_icon {
     filter: invert(0.5);
   }
+	
+	/*Play Page*/
+	.wannaplay_mask_button.del_favorite {
+		background-color: ((mainTheme==0) ? #363636 : #555);
+	}
+	.wannaplay_mask_button.wannaplayauto_pref {
+		background-color: var(--popover-bg);
+	}
+	.wannaplay_mask_button.how_to_play_button {
+		background-color: var(--link);
+	}
+	.wannaplay_mask_button.add_favorite {
+		background-color: #7b4a04;
+	}
+	.wannaplay_mask_button.add_favorite .backplus {
+		color: #7b4a04;
+	}
+	.copy_display, .copy_display span {
+		background-color: var(--input-bg);
+		color: var(--text);
+	}
+	
+	/*Tables*/
+	.warning_high {
+		background-color: #bb0e0e;
+		border: 1px solid #680909;
+	}
   
   /* Main content blocks */
   div.subtitle {
@@ -938,7 +1055,7 @@
     background: var(--section-bg);
   }
   .notouch-device .login-menu-item:hover {
-    background-color: var(--text);
+    background-color: var(--forum-hover);
   }
   .notouch-device .bgabutton_gray:hover {
     background-color: var(--link2);
@@ -1293,7 +1410,7 @@
 	
 	
   /* ==FORUMS== */
-	html, body {
+	body, .post:target .content {
 		color: var(--text);
 		background: var(--main-bg-colour);
 	}
@@ -1336,13 +1453,13 @@
 	}
 	.button:hover, .button:focus {
 		background-color: var(--highlight-bg) !important;
-		background-image: linear-gradient(to bottom, var(--popover-bg) 0%,#111 100%);
+		background-image: linear-gradient(to bottom,((mainTheme==4) ? #a3410f : var(--popover-bg)) 0%,((mainTheme==4) ? #652308 : #111) 100%);
 		text-shadow: 1px 1px 0 #0007, -1px -1px 0 #0007, -1px -1px 0 rgba(214, 23, 68, .2);
 	}
 	.button {
 		border-color: var(--color-border-default) !important;
 		background-color: var(--popover-bg) !important;
-		background-image: linear-gradient(to bottom, var(--popover-bg) 0%, #000 100%);
+		background-image: linear-gradient(to bottom, ((mainTheme==4) ? #8c370d : var(--popover-bg)) 0%, ((mainTheme==4) ? #592308: var(--highlight-bg)) 100%);
 		-webkit-box-shadow: 0 0 0 1px #000 inset;
 	}
 	.search-box .inputbox, .search-box .inputbox:hover, .search-box .inputbox:focus {
