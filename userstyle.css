@@ -1,4 +1,4 @@
-==UserStyle==
+/* ==UserStyle==
 @name           Dark Mode for BGA
 @namespace      github.com/OregSamSas/boardgamearena-darkmode
 @version        1.2.4
@@ -55,19 +55,19 @@
     --link: (mainTheme==0) ? #7f9cbb : (mainTheme==2) ? #52bbdd : (mainTheme==4) ? #d76b12 : #62acff;
     --link2: (mainTheme==0) ? #020c17 : (mainTheme==2) ? #002d3d : (mainTheme==4) ? #b24411 : #001d3d;
 		--forum-hover: (mainTheme==0) ? #181818 : (mainTheme==1) ? #27343a : (mainTheme==2) ? #233331 : (mainTheme==4) ? #3e2518 : #333;
-		--ranking0: (mainTheme==0) ? #324f5a : (mainTheme=1) ? #146eb8 : #74bed1;
-		--ranking1: (mainTheme==0) ? #26334c : (mainTheme=1) ? #1474b8 : #84b8de;
-		--ranking2: (mainTheme==0) ? #21233e : (mainTheme=1) ? #1474b8 : #94acd6;
-		--ranking3: (mainTheme==0) ? #1a1641 : (mainTheme=1) ? #1474b8 : #9ba5d0;
+		--ranking0: (mainTheme==0) ? #324f5a : (mainTheme==1) ? #146eb8 : (mainTheme==4) ? #eb7337 : #74bed1;
+		--ranking1: (mainTheme==0) ? #26334c : (mainTheme==1) ? #1474b8 : (mainTheme==4) ? #e56014 : #84b8de;
+		--ranking2: (mainTheme==0) ? #21233e : (mainTheme==1) ? #1474b8 : (mainTheme==4) ? #cc3c09 : #94acd6;
+		--ranking3: (mainTheme==0) ? #1a1641 : (mainTheme==1) ? #1474b8 : (mainTheme==4) ? #9c2004 : #9ba5d0;
   }
 	
 	/*Lantern Theme Special*/
 	if (mainTheme==4) {
-		.bgabutton_blue, .bga-popup-modal__header.svelte-1gmp0d8.svelte-1gmp0d8, #faq_topbutton {
-			background: linear-gradient(#8c370d, #592308);
+		.bgabutton_blue, .bga-popup-modal__header.svelte-1gmp0d8.svelte-1gmp0d8, #faq_topbutton, .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
+			background: linear-gradient(#8c370d, #592308) !important;
 		}
-		.bgabutton_blue:hover {
-			background: linear-gradient(180deg,#a3410f,#652308);
+		.bgabutton_blue:hover, .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover {
+			background: linear-gradient(180deg,#a3410f,#652308) !important;
 		}
 		.bga-player-menu__tab.svelte-vu0owz.svelte-vu0owz, #lobby_invite_friend_zone {
 			color: #b85314;
@@ -122,6 +122,11 @@
 		/*Forum*/
 		.button:hover .icon, .button-secondary:hover {
 			color: #f97a11;
+		}
+		
+		/*Wiki*/
+		.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover {
+			text-shadow: none !important;
 		}
 	}
 	
@@ -290,7 +295,7 @@
 		background-color: var(--section-bg);
 	}
 	.bga-dropdown-button-value.svelte-7mom1l.svelte-7mom1l {
-		background: rgba(0, 0, 0, 0) linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%) repeat scroll 0% 0% !important;
+		background: rgba(0, 0, 0, 0) linear-gradient(rgb(25, 25, 25) 0%, rgb(18, 18, 18) 80%) repeat scroll 0% 0% !important;
 	}
 	.bga-dropdown-button-split > svg {
     filter: invert(0.9) !important;
@@ -422,7 +427,7 @@
 	.bga-collapse-icon.svelte-1sfzrz0 {
 		background-image: linear-gradient(0deg, var(--section-bg2), var(--section-bg)) !important;
 	}
-	.panel-block--buttons__play-wrapper--firsttime.panel-block--buttons__play-wrapper--glow.svelte-12pdu27 {
+	.panel-block--buttons__play-wrapper--glow.svelte-12pdu27 {
 		background-image: linear-gradient(180deg, ((mainTheme==0) ?  #2b2929 : (mainTheme==1) ?  #213742 : var(--popover-bg) ) calc(100% - 45px), var(--header-bg2) 100%);
 	}
 	.bga-player-count-dropdown__dot > svg > circle, div.bga-dropdown-option > div > div > svg > circle, .bg-gray-200 > div > span > svg > circle:not(.truncate > span > svg > circle), .bga-game-option-item-choice__selector.svelte-smdgd9 > div > svg > circle, .bga-game-option-item-choice__option.svelte-smdgd9 > div > svg > circle, div.text-lg > div > svg > circle, .bga-game-option-form > div > div > div > div > div > svg > circle {
@@ -594,6 +599,9 @@
   div.bga-dropdown-button-value.flex-1.truncate.svelte-uizb0y, .bg-gray-200 {
     background: rgba(0, 0, 0, 0) linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%) repeat scroll 0% 0% !important;
   }
+	.bg-gray-200:hover {
+		background: var(--section-bg) !important;
+	}
   .bga-checkbox.svelte-xx51yh.svelte-xx51yh {
     background-color: var(--highlight-bg);
     background-image: linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%)
@@ -661,6 +669,9 @@
 	}
 	.tournaments-list-result__indicator, .gametable_colored_indicator {
 		filter: invert(.8) hue-rotate(180deg) !important;
+	}
+	.bga-table-arrow-icon > svg {
+		color: var(--text);
 	}
 	.bg-bga-table-tb {
 		background-color: hsl(37, 97%, 28%);
@@ -1191,14 +1202,20 @@
 		color: var(--text);
 		border-color: var(--color-border-default);
 	}
-	.vectorTabs .selected {
+	.vector-menu-tabs-legacy .selected {
 		background: var(--header-bg2);
 	}
-	.vectorTabs li {
+	.vector-menu-tabs-legacy li {
 		background-image: linear-gradient(to top,#0f1a21 0, var(--header-bg) 1px, var(--page-bg) 20%);
 	}
-	.vectorTabs, .vectorTabs span, #mw-head .vectorMenu h3 {
-		background-image: linear-gradient(to bottom,rgba(167,215,249,0) 0,#333d44 100%);
+	.vector-menu-dropdown .vector-menu-content {
+		background-color: var(--popover-bg);
+	}
+	.vector-search-box-input {
+		background-color: var(--input-bg);
+		border-color: var(--color-border-default);
+	} .searchButton[name="go"] {
+		filter: invert(.9);
 	}
 	.mw-body {
 		border-color: #333d44;
@@ -1206,6 +1223,10 @@
 	.mw-body, .parsoid-body {
 		background-color: var(--main-bg-colour);
 		color: var(--text);
+	}
+	.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools .oo-ui-tool.oo-ui-widget-disabled.oo-ui-flaggedElement-primary > .oo-ui-tool-link, .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool.oo-ui-flaggedElement-primary > .oo-ui-tool-link {
+		background-color: var(--input-bg);
+		border-color: var(--color-border-default);
 	}
 	h1, h4, h5, h6 {
 		color: var(--text);
@@ -1217,7 +1238,28 @@
 		color: var(--text2);
 	}
 	#footer li {
-		color: var(--input-bg)
+		color: var(--text4)
+	}
+	.oo-ui-toolbar-bar {
+		background-color: var(--section-bg2);
+		color: var(--text2);
+	} .oo-ui-tool.oo-ui-widget-enabled > .oo-ui-tool-link:hover, .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover, .oo-ui-popupToolGroup.oo-ui-popupToolGroup-active > .oo-ui-popupToolGroup-handle, .oo-ui-tool.oo-ui-widget-enabled > .oo-ui-tool-link:active, .oo-ui-tool.oo-ui-widget-enabled.oo-ui-tool-active > .oo-ui-tool-link, .oo-ui-tool.oo-ui-widget-enabled.oo-ui-popupToolGroup-active > .oo-ui-tool-link {
+		background-color: var(--forum-hover);
+		color: var(--link);
+	} .oo-ui-popupToolGroup-tools {
+		background-color: var(--popover-bg);
+	} .oo-ui-popupToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
+		color: var(--link2);
+	} .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor::after {
+		border-bottom-color: var(--color-border-default);
+	} .oo-ui-indicator-clear {
+		filter: invert(.9);
+	} .oo-ui-windowManager-modal > .oo-ui-dialog {
+		background-color: rgba(0,0,0,.5);
+	} .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-tool-link {
+		background-color: var(--section-bg);
+	} .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-tool-link:hover {
+		background-color: var(--forum-hover);
 	}
 	.mw-widget-calendarWidget-day, .wikitable {
 		color: #fff;
@@ -1312,8 +1354,11 @@
 		background-image: linear-gradient(to bottom, var(--popover-bg) 0%,#111 100%);
 		text-shadow: 1px 1px 0 #0007, -1px -1px 0 #0007, -1px -1px 0 rgba(214, 23, 68, .2);
 	}
-	span.oo-ui-iconElement-icon:not(.oo-ui-icon-feedback):not(.oo-ui-icon-checkAll), .oo-ui-indicator-down {
+	span.oo-ui-iconElement-icon:not(.oo-ui-icon-feedback):not(.oo-ui-icon-checkAll):not(.oo-ui-image-error.oo-ui-icon-error):not(.oo-ui-image-destructive.oo-ui-icon-unLink):not(.oo-ui-icon-expand):not(.oo-ui-icon-collapse):not(.oo-ui-image-invert.oo-ui-icon-stop), .oo-ui-indicator-down {
 		filter: invert(1) hue-rotate(180deg);
+	}
+	.mw-rcfilters-ui-cell {
+		background-color: var(--main-content-bg);
 	}
 	.oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover, .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
 		background-color: var(--forum-hover);
@@ -1329,6 +1374,16 @@
 	}
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .mw-rcfilters-ui-tagItemWidget-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		background-color: var(--text4);
+	} .ve-ce-linkAnnotation.ve-ce-annotation-active {
+  	box-shadow: 0 0 0 1px #060708;
+		background-color: var(--forum-hover);
+	} .ve-ce-attachedRootNode::selection, .ve-ce-attachedRootNode ::selection {
+		background: var(--popover-bg);
+	} .ve-ui-mwSaveDialog-options, .ve-ui-mwSaveDialog-summary {
+		background-color: var(--section-bg2);
+		border: 1px solid var(--color-border-default);
+	} .oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input::placeholder {
+		color: var(--text);
 	}
 	.mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget.oo-ui-widget {
 		border-color: var(--color-border-default);
@@ -1384,6 +1439,21 @@
   	background-color: var(--popover-bg);
 		border-color: var(--color-border-default);
 	}
+	.oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
+		background-color: var(--main-content-bg);
+	} .oo-ui-messageDialog-title, .oo-ui-messageDialog-message {
+		color: var(--text);
+	} .ve-init-mw-welcomeDialog-content::before, .ve-ui-educationPopup-image-link {
+		filter: invert(1) hue-rotate(180deg);
+	}
+	div[style*="background-color: ivory"], .mw-message-box-warning {
+		background-color: var(--header-bg) !important;
+		color: var(--text);
+		border-color: var(--color-border-default);
+	}
+	.mw-notification {
+		color: var(--text);
+	}
 	
 	/*Preferences*/
 	.mw-prefs-buttons, .oo-ui-tabSelectWidget-framed {
@@ -1406,6 +1476,17 @@
 	.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
   	background-color: var(--forum-hover);
   	color: var(--text);
+	}
+	.mw-email-none .oo-ui-labelWidget {
+		background-color: var(--main-content-bg);
+		border-color: var(--color-border-default);
+		color: var(--text3);
+	}
+	.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected, .oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle {
+		background-color: var(--popover-bg);
+	}
+	.oo-ui-menuOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget {
+		color: var(--text);
 	}
 	
 	
