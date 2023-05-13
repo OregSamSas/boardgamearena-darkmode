@@ -2,7 +2,7 @@
 A dark theme for boardgamearena
 
 ![Screenshot](https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bga-example.png)
-
+![Screenshot2](https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bga-example-lantern.png)
 ## Installation
 
 ### My Recommendation
