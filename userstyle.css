@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Mode for BGA
 @namespace      github.com/OregSamSas/boardgamearena-darkmode
-@version        1.3.5
+@version        1.6.1
 @description    `Improved Dark mode for Boardgamearena.com`
 @author         Oreg Sam (https://github.com/OregSamSas)
 @license        MIT
@@ -13,13 +13,20 @@
   black  "Black"    <<<EOT 0 EOT;
   pearl  "Crystal"  <<<EOT 1 EOT;
   dim    "Dim"      <<<EOT 2 EOT;
-  almond "Almond"   <<<EOT 3 EOT;
+  zomb   "Zombie"   <<<EOT 3 EOT;
 	lant   "Lantern"  <<<EOT 4 EOT;
+	grey   "Silver"   <<<EOT 5 EOT;
+	earth  "Earth"    <<<EOT 6 EOT;
 }
 @advanced dropdown imageBg 'Main page background:' {
-	mono     "Monocoloured"                      <<<EOT var(--main-bg-colour) EOT;
+	mono     "Monocoloured" <<<EOT var(--main-bg-colour) EOT;
 	img      "Wood pattern" <<<EOT url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/822984c7da9769671a9021b30ac5c4247e89f41e/assets/images/wood-dark.png) EOT;
 	img-dark "Dark pattern" <<<EOT url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/affc42958ff84f0d0353fbb5c636a99044cfefce/assets/images/wood-dark.png) EOT;
+}
+@advanced dropdown linksType 'Link style' {
+	normal "Colourful"     <<<EOT 2 EOT;
+	plain  "Plain Links"  <<<EOT 0 EOT;
+	moo    "Monocoloured" <<<EOT 1 EOT;
 }
 @advanced dropdown easterEgg 'Easter Eggs:' {
 	none   "None"     <<<EOT 'none'    EOT;
@@ -34,49 +41,43 @@
 	pi     "Pi Ton"   <<<EOT 'pi'      EOT;
 	dim-me "Dim Me"   <<<EOT 'dim'     EOT;
 }
-@var checkbox showX 'Display X mark on Filter checkboxes' 0
 ==/UserStyle==*/
 
 @-moz-document domain("boardgamearena.com") {
-	:root {
-		--text: (mainTheme==0) ? #ccc : #c4bebe;
-		--text2: (mainTheme==0) ? #b1b0b0: #bbb;
-		--text3: (mainTheme==0) ? #adadad : #ebebeb;
+  :root {
+    --text: (mainTheme==0) ? #ccc : (mainTheme==5) ? #ddd : #c4bebe;
+    --text2: (mainTheme==0) ? #b1b0b0: #bbb;
+    --text3: (mainTheme==0) ? #adadad : #ebebeb;
 		--text4: #999;
-		--main-bg-colour: var(--page-bg);
-		--page-bg: (mainTheme==0) ? #080808 : (mainTheme==1) ? #0d1117 : (mainTheme==2) ? #13181b : (mainTheme==4) ? #1c1411 : #16100e;
-		--page-bg2: (mainTheme==0) ? #111: (mainTheme==1) ? #11161d : (mainTheme==2) ? #11161d : (mainTheme==4) ? #201611 : #11161d;
-		--header-bg: (mainTheme==0) ? #111010 : (mainTheme==1) ? #161b22 : (mainTheme==2) ? #171b21 : (mainTheme==4) ? #31231e : #161b22;
-		--header-bg2: (mainTheme==0) ? #100f0f : (mainTheme==1) ? #101c2e : (mainTheme==2) ? #1c2128 : (mainTheme==4) ? #36251e : #101c2e;
-		--header-hover: (mainTheme==0) ? #1f1f1f : (mainTheme==1) ? #20334f : (mainTheme==2) ? #283136 : (mainTheme==4) ? #463122 : #20334f;
-		--main-content-bg: (mainTheme==0) ? #131313 : (mainTheme==1) ? #1c1d22 : (mainTheme==2) ? #1e2023 : (mainTheme==4) ? #251c18 : #1d1d1d;
-		--section-bg: (mainTheme==0) ? #151515 : (mainTheme==1) ? #1d1d25 : (mainTheme==2) ? #212628 : (mainTheme==4) ? hsl(10, 20%, 14%) : #262626;
-		--section-bg2: (mainTheme==0) ? #141414 : (mainTheme==1) ? #2a2a3a : (mainTheme==2) ? #283034 : (mainTheme==4) ? #2d2625 : #2a2a2a;
-		--popover-bg: (mainTheme==0) ? #262525 : (mainTheme==1) ? #34343b : (mainTheme==2) ? #313737 : (mainTheme==4) ? #373331 : #373737;
-		--highlight-bg: (mainTheme==0) ? #050000 : (mainTheme==2) ? #101313 : (mainTheme==4) ? #1c1613  : #000;
-		--input-bg: (mainTheme==0) ? #2e2e2e : (mainTheme==1) ? #414141 : (mainTheme==2) ? #404545 : (mainTheme==4) ? #403b3b : #666;
-		--color-border-default: (mainTheme==0) ? #202020 : (mainTheme==2) ? #353636 : (mainTheme==4) ? #2d2927  : #30363d;
-		--link: (mainTheme==0) ? #7f9cbb : (mainTheme==2) ? #52bbdd : (mainTheme==4) ? #d76b12 : #62acff;
-		--link2: (mainTheme==0) ? #020c17 : (mainTheme==2) ? #002d3d : (mainTheme==4) ? #b24411 : #001d3d;
-		--forum-hover: (mainTheme==0) ? #181818 : (mainTheme==1) ? #27343a : (mainTheme==2) ? #233331 : (mainTheme==4) ? #3e2518 : #333;
-		--ranking0: (mainTheme==0) ? #324f5a : (mainTheme==1) ? #146eb8 : (mainTheme==2) ? #146eb8 : (mainTheme==4) ? #eb9a37 : #74bed1;
-		--ranking1: (mainTheme==0) ? #26334c : (mainTheme==1) ? #1474b8 : (mainTheme==2) ? #1474b8 : (mainTheme==4) ? #d76d10 : #84b8de;
-		--ranking2: (mainTheme==0) ? #21233e : (mainTheme==1) ? #1474b8 : (mainTheme==2) ? #1474b8 : (mainTheme==4) ? #c73b08 : #94acd6;
-		--ranking3: (mainTheme==0) ? #1a1641 : (mainTheme==1) ? #1474b8 : (mainTheme==2) ? #1474b8 : (mainTheme==4) ? #9c2004 : #9ba5d0;
-		--button: (mainTheme==0) ? #577799 : (mainTheme==1) ? #1a57a7 : (mainTheme==2) ? #0c9cb9  : (mainTheme==4) ? #b85314 : var(--link);
-		--button-hover: (mainTheme==0) ? #224b78 : (mainTheme==1) ? #7705a7 : (mainTheme==2) ? #039f95 : (mainTheme==4) ? #a72305 : var(--link2);
-	}
+    --main-bg-colour: var(--page-bg);
+    --page-bg: (mainTheme==0) ? #080808 : (mainTheme==1) ? #0d1117 : (mainTheme==2) ? #13181b : (mainTheme==3) ? #111c0f : (mainTheme==4) ? #1c1411 : (mainTheme==5) ? #222 : (mainTheme==6) ? #171514 : #16100e;
+    --page-bg2: (mainTheme==0) ? #111: (mainTheme==1) ? #11161d : (mainTheme==2) ? #11161d : (mainTheme==3) ? #172113 : (mainTheme==4) ? #201611 : (mainTheme==6) ? #1c1a1a : #151515;
+    --header-bg: (mainTheme==0) ? #111010 : (mainTheme==1) ? #161b22 : (mainTheme==2) ? #171b21 : (mainTheme==3) ? #1f231e : (mainTheme==4) ? #31231e : (mainTheme==5) ? #252525 : (mainTheme==6) ? #26201d : #161b22;
+    --header-bg2: (mainTheme==0) ? #100f0f : (mainTheme==1) ? #101c2e : (mainTheme==2) ? #1c2128 : (mainTheme==3) ? #1c241c : (mainTheme==4) ? #36251e : (mainTheme==5) ? #323232 : (mainTheme==6) ? #2f2520 : #101c2e;
+    --header-hover: (mainTheme==0) ? #1f1f1f : (mainTheme==1) ? #20334f : (mainTheme==2) ? #283136 : (mainTheme==3) ? #364736 : (mainTheme==4) ? #463122 : (mainTheme==5) ? #3a3a3a : (mainTheme==6) ? #322620  : #20334f;
+    --main-content-bg: (mainTheme==0) ? #131313 : (mainTheme==1) ? #1c1d22 : (mainTheme==2) ? #1e2023 : (mainTheme==3) ? #181c18 : (mainTheme==4) ? #251c18 : (mainTheme==5) ? #333 : (mainTheme==6) ? #211c1a : #1d1d1d;
+    --section-bg: (mainTheme==0) ? #151515 : (mainTheme==1) ? #1d1d25 : (mainTheme==2) ? #212628 : (mainTheme==3) ? #232721 : (mainTheme==4) ? #2b1f1d : (mainTheme==5) ? #343434 : (mainTheme==6) ? #2a231f : #262626;
+    --section-bg2: (mainTheme==0) ? #141414 : (mainTheme==1) ? #2a2a3a : (mainTheme==2) ? #283034 : (mainTheme==3) ? #273323 : (mainTheme==4) ? #2d2625 : (mainTheme==6) ? #29211d : #282828;
+    --popover-bg: (mainTheme==0) ? #262525 : (mainTheme==1) ? #34343b : (mainTheme==2) ? #313737 : (mainTheme==3) ? #333834 : (mainTheme==4) ? #373331 : (mainTheme==6) ? #3d342e : #373737;
+    --highlight-bg: (mainTheme==0) ? #050000 : (mainTheme==2) ? #101313 : (mainTheme==4) ? #1c1613 : (mainTheme==3) ? #1f1e1d : (mainTheme==6) ? #0d0c0c : #000;
+    --input-bg: (mainTheme==0) ? #2e2e2e : (mainTheme==1) ? #414141 : (mainTheme==2) ? #404545 : (mainTheme==3) ? #454340 : (mainTheme==4) ? #3e3530 : (mainTheme==6) ? #54443d : #666;
+    --color-border-default: (mainTheme==0) ? #202020 : (mainTheme==2) ? #353636 : (mainTheme==3) ? #323a32 : (mainTheme==4) ? #2d2927 : (mainTheme==5) ? #454545 : (mainTheme==6) ? #2f2c2b : #30363d;
+    --link: (mainTheme==0) ? #7f9cbb : (mainTheme==2) ? #52bbdd : (mainTheme==3) ? #47d835 : (mainTheme==4) ? #d76b12 : (mainTheme==5) ? #fff : (mainTheme==6) ? #cab798 : #62acff;
+    --link2: (mainTheme==0) ? #020c17 : (mainTheme==2) ? #002d3d : (mainTheme==3) ? #088201 : (mainTheme==4) ? #b24411 : (mainTheme==5) ? #666 : (mainTheme==6) ? #886344 : #001d3d;
+		--forum-hover: (mainTheme==0) ? #181818 : (mainTheme==1) ? #27343a : (mainTheme==2) ? #233331 : (mainTheme==3) ? #1c321c : (mainTheme==4) ? #3e2518 : (mainTheme==6) ? #4b351d : #373737;
+		--ranking0: (mainTheme==0) ? #324f5a : (mainTheme==1) ? #09779f : (mainTheme==2) ? #025b97 : (mainTheme==3) ? #1ab04b : (mainTheme==4) ? #eb9a37 : #74bed1;
+		--ranking1: (mainTheme==0) ? #26334c : (mainTheme==1) ? #075f9e : (mainTheme==2) ? #007fa9 : (mainTheme==3) ? #5b9a5f : (mainTheme==4) ? #d76d10 : #84b8de;
+		--ranking2: (mainTheme==0) ? #21233e : (mainTheme==1) ? #070f99 : (mainTheme==2) ? #009ca3 : (mainTheme==3) ? #418521 : (mainTheme==4) ? #c73b08 : #94acd6;
+		--ranking3: (mainTheme==0) ? #1a1641 : (mainTheme==1) ? #4204a0 : (mainTheme==2) ? #00917b : (mainTheme==3) ? #456629 : (mainTheme==4) ? #9c2004 : #9ba5d0;
+		--button: (mainTheme==0) ? #577799 : (mainTheme==1) ? #1a57a7 : (mainTheme==2) ? #0c9cb9 : (mainTheme==3) ? #22a112  : (mainTheme==4) ? #b85314 : (mainTheme==5) ? #888 : (mainTheme==6) ? #b58a5b : var(--link);
+		--button-hover: (mainTheme==0) ? #224b78 : (mainTheme==1) ? #7705a7 : (mainTheme==2) ? #039f95 : (mainTheme==3) ? #1c8001 : (mainTheme==4) ? #a72305 : (mainTheme==6) ? #ad7e4b : var(--link2);
+		--notif: (mainTheme==0) ? #2a0606: (mainTheme==4) ? #5b1814 : var(--forum-hover)
+  }
 	
 	/*Lantern Theme Special*/
 	if (mainTheme==4) {
-		span[style*="color: #00aaa5"], .playername, .text-bga-cyan {
+		span[style*="color: #00aaa5"], .text-bga-cyan {
 			color: #e64118 !important;
-		}
-		.bga-game-panel-elo-box__bgborder.svelte-6i3orp.svelte-6i3orp, .bga-game-panel-arena-box__bgborder.svelte-r8quf3 {
-			background: linear-gradient(#7a474700 0%, #7a2525 36%, #7a2525 64%, #25477a00 100%);
-		}
-		.bga-game-panel-elo-box__bginner.svelte-6i3orp.svelte-6i3orp, .bga-game-panel-arena-box__bginner.svelte-r8quf3 {
-			background: linear-gradient(#56070700 0%, #560e07aa 36%, #560707aa 64%, #072c5600 100%);
 		}
 		.bga-dropdown.svelte-7mom1l .bga-dropdown-button-split.svelte-7mom1l[style*="border-bottom-color: rgb(25"] {
 			background: rgba(0, 0, 0, 0) linear-gradient(0deg,#652308,#a3410f) repeat scroll 0% 0% !important;
@@ -106,39 +107,56 @@
 		.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem.pageheader_menuitemselected {
 			color: var(--link2);
 		}
-		.bga-sub-menu.svelte-w3p84l {
-			background-color: #531700;
-		}
 		.bga-toggle--on.svelte-xkje4o .bga-toggle__slider.svelte-xkje4o, span.bga-tooltip__icon.svelte-scao5p[style*="160);"] > svg {
 			color: #ed6e12;
 		}
 		.bga-dropdown.svelte-1ucf0sb .bga-dropdown-button-split.svelte-1ucf0sb {
 			border-bottom-color: #592308 !important;
 		}
-		
-		/*Forum*/
-		.button:hover .icon, .button-secondary:hover {
-			color: #f97a11;
-		}
-		
-		/*Wiki*/
-		.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover {
-			text-shadow: none !important;
-		}
 	}
 	
 	/*Ranking*/
-	.gamerank_apprentice, .gamerank_beginner {
-		background-color: var(--ranking0);
+	.gamerank_apprentice, .gamerank_beginner, 
+	.bga-elo-label[style*="background-color: rgb(116"] {
+		background-color: var(--ranking0) !important;
 	}
-	.gamerank_average {
-		background-color: var(--ranking1);
+	.gamerank_average,
+  .bga-elo-label[style*="background-color: rgb(132"] {
+		background-color: var(--ranking1) !important;
 	}
-	.gamerank_good {
-		background-color: var(--ranking2);
+	.gamerank_good,
+  .bga-elo-label[style*="background-color: rgb(148"] {
+		background-color: var(--ranking2) !important;
 	}
-	.gamerank_strong {
-		background-color: var(--ranking3);
+	.gamerank_strong,
+  .bga-elo-label[style*="background-color: rgb(155"] {
+		background-color: var(--ranking3) !important;
+	}
+	
+	div[title*="Apprentice"] > svg > path {
+		fill: var(--ranking0) !important;
+	}
+	div[title*="Average"] > svg > path {
+		fill: var(--ranking1) !important;
+	}
+	div[title*="Good"] > svg > path {
+		fill: var(--ranking2) !important;
+	}
+	div[title*="Strong"] > svg > path {
+		fill: var(--ranking3) !important;
+	}
+	
+	/*Elo Box on Game's page*/
+	if(mainTheme!=1) {
+		.bga-game-panel-elo-box__bgborder.svelte-6i3orp.svelte-6i3orp, .bga-game-panel-arena-box__bgborder.svelte-r8quf3 {
+			background: linear-gradient(#7a474700 0%, ((mainTheme==4) ? #7a2525 : var(--button-hover)) 36%, ((mainTheme==4) ? #7a2525 : var(--button-hover)) 64%, #25477a00 100%);
+		}
+		.bga-game-panel-elo-box__bginner.svelte-6i3orp.svelte-6i3orp, .bga-game-panel-arena-box__bginner.svelte-r8quf3 {
+			background: linear-gradient(#56070700 0%, ((mainTheme==4) ? #560e07aa : var(--button-hover)) 36%, ((mainTheme==4) ? #560707aa : var(--button-hover)) 64%, #072c5600 100%);
+			if(mainTheme!=4) {
+				opacity: .8;
+			}
+		}
 	}
 	
 	/*Game ends*/
@@ -158,71 +176,71 @@
 		background-color: var(--input-bg);
 	}
 	
-	/*Fix svg rounding issues or idk*/
-	.xp_container .arrowl {
-	left: -13px;
-	}
-	.xp_container .arrow {
-	right: -13px;
-	}
-	
-	/*404*/
-	img[src="https://x.boardgamearena.net/data/themereleases/current/img/logo/main_rgb.jpg"] {
-	filter: invert(0.95) hue-rotate(180deg) contrast(120%);
-	}
-	
-	/*"Welcome to" page/not logged in*/
-	.bga-menu-bar.svelte-1wkvhtp.svelte-1wkvhtp {
-	background: linear-gradient(to bottom, #121212, #080808);
-	}
-	.bgabuttonbar, .bgabutton:not(.bgabutton_red) {
-	color: var(--link) !important;
-	}
-	.new2017joinpage, #join_white_background {
-	background-color: var(--page-bg);
-	}
-	.join_bga_blue {
-	color: #4e38b3;
-	}
-	.bga-link {
-	color: #1a57a7 !important;
-	}
-	#join_background_diagonal {
-	filter: brightness(0.25)
-	}
-	.join_bga_lightblue {
-	color: var(--link);
-	}
-	.purple_text {
-	color: #6a018a;
-	}
-	.gray_background {
-	background-color: var(--page-bg2);
-	}
-	#logo_tt {
-	filter: invert(0.9) brightness(0.6) hue-rotate(168deg) grayscale(1);
-	}
-	#logo_tt:hover {
-	filter: invert(0.9) brightness(0.6) hue-rotate(168deg) !important;
-	}
-	.new2017joinpage #overall-footer, .new2017joinpage #overall_footer_topbutton {
-	background-color: #000 !important;
-	}
-	#home_doublecards {
-	filter: invert(1) hue-rotate(180deg);
-	}
-	#home_card_white, #home_arrow {
-	filter: invert(0.85) hue-rotate(196deg);
-	}
-	#logo_bgg {
-	filter: contrast(50%) grayscale(100%);
-	}
-	#logo_bgg:hover {
-	filter: contrast(50%);
-	}
-	#lang_redirection, #stay_connected {
-	background-color: var(--section-bg);
-	}
+  /*Fix svg rounding issues or idk*/
+  .xp_container .arrowl {
+    left: -13px;
+  }
+  .xp_container .arrow {
+    right: -13px;
+  }
+  
+  /*404*/
+  img[src="https://x.boardgamearena.net/data/themereleases/current/img/logo/main_rgb.jpg"] {
+    filter: invert(0.95) hue-rotate(180deg) contrast(120%);
+  }
+  
+  /*"Welcome to" page/not logged in*/
+  .bga-menu-bar.svelte-1wkvhtp.svelte-1wkvhtp {
+    background: linear-gradient(to bottom, #121212, #080808);
+  }
+  .bgabuttonbar, .bgabutton:not(.bgabutton_red) {
+    color: var(--link) !important;
+  }
+  .new2017joinpage, #join_white_background {
+    background-color: var(--page-bg);
+  }
+  .join_bga_blue {
+      color: #4e38b3;
+  }
+  .bga-link {
+      color: #1a57a7 !important;
+  }
+  #join_background_diagonal {
+        filter: brightness(0.25)
+  }
+  .join_bga_lightblue, .join_bga_blue, .purple_text {
+    color: var(--link) !important;
+  }
+  .purple_text {
+      color: #6a018a;
+  }
+  .gray_background {
+      background-color: var(--page-bg2);
+  }
+  #logo_tt {
+    filter: invert(0.9) brightness(0.6) hue-rotate(168deg) grayscale(1);
+  }
+  #logo_tt:hover {
+    filter: invert(0.9) brightness(0.6) hue-rotate(168deg) !important;
+  }
+  .new2017joinpage #overall-footer, .new2017joinpage #overall_footer_topbutton {
+    background-color: #000 !important;
+  }
+  #home_doublecards {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  #home_card_white, #home_arrow {
+    filter: invert(0.85) hue-rotate(196deg);
+  }
+  #logo_bgg {
+      filter: contrast(50%) grayscale(100%);
+  }
+  #logo_bgg:hover {
+      filter: contrast(50%);
+  }
+  #lang_redirection, #stay_connected {
+    background-color: var(--section-bg);
+  }
 	.new2017joinpage #page-content {
 		color: var(--text2);
 	}
@@ -230,59 +248,139 @@
 	#registerbox .register_field, .loginform_input .login_field {
 		background-color: var(--input-bg);
 	}
+    .bga-account-manager-form.svelte-8a71si {
+        background: linear-grdient(var(--section-bg), var(--section-bg2))
+    }
+    .outline-bga-input-blue {
+        outline-color: var(--link2);
+    }
+    .outline-bga-input-purple {
+        outline-color: var(--button)
+    }
+    .bga-textfield--flat.svelte-lnr0d4.svelte-lnr0d4, .bga-button--white.svelte-1yagdd.svelte-1yagdd {
+        background-color: var(--input-bg)
+    }
+    .bga-button--white.svelte-1yagdd.svelte-1yagdd:hover {
+        background-color: var(--forum-hover)
+    }
+    .fa-google, .fa-facebook {
+        color: var(--link);
+    }
+    path[fill*="url(#logogradient4fd15d)"] {
+        fill: var(--link)
+    }
+    div[data-bga-tooltip-placement] > div {
+        background-color: var(--popover-bg) !important;
+        border-color: var(--color-border-default) !important;
+    }
+    .registration__back-button.svelte-f158cx:hover, .registration__back-button.svelte-f158cx:focus-visible {
+        background-color: var(--forum-hover)
+    }
+    .bga-button--light-green.svelte-1yagdd.svelte-1yagdd {
+        background: linear-gradient(180deg, rgb(19, 237, 16) 0%, rgb(25, 157, 87) 100%) no-repeat border-box, linear-gradient(180deg, rgb(19, 237, 16) 0%, rgb(25, 157, 87) 100%) no-repeat border-box
+    }
+    /*Language selection*/
+    .bga-lang-switcher-list__lang-item.svelte-1v0ft8r:hover {
+        background: var(--forum-hover);
+    }
+    .icon20_arrowdown_white::before {
+      content: "▼";
+      color: var(--button);
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: 4px;
+      left: 3px;
+    }
+    .icon20_arrowdown_white {
+        background-image: none;
+    }
+  
+  /*Tutorial*/
+  .explanation_panel {
+    background-color: inherit;
+  }
 	
-	/*Tutorial*/
-	.explanation_panel {
-	background-color: inherit;
+	/* Cookie notice */
+	.cc-color-override--1263406702.cc-window  {
+		background-color: var(--link2);
+        filter: contrast((mainTheme==3) ? 5 : 1)
 	}
-	
-	/* Wood colour overwrite */
+	.cc-color-override--1263406702 .cc-btn {
+		background-color: ((mainTheme==4) ? var(--forum-hover) : var(--button));
+		filter: brightness(.8) contrast(1);
+	}
+	.cc-color-override--1263406702 .cc-btn:hover, .cc-color-override--1263406702 .cc-btn:focus {
+		background-color: ((mainTheme==4) ? var(--forum-hover) : var(--button));
+		filter: brightness(.9) contrast((mainTheme==3) ? 0.6 : 1.5);
+	}
+  
+  /* Wood colour overwrite */
 	body::-webkit-scrollbar {
 		width: 12px;
 	}
 	body::-webkit-scrollbar-track {
-		background: var(--page-bg) !important;
+		background: var(--header-bg) !important;
 	}
 	body::-webkit-scrollbar-thumb {
-		background: var(--text) !important;
+		background: var(--header-hover) !important;
 	}
-	html,
-	.head_info,
-	.bgabutton_gray {
-	background: var(--page-bg);
-	color: var(--text);
+  html,
+  .head_info,
+  .bgabutton_gray {
+    background: var(--page-bg);
+    color: var(--text);
 		scrollbar-color: var(--header-hover) var(--header-bg);
-	}
-	input,
-	select {
-	background-color: var(--input-bg);
-	border-color: var(--color-border-default);
-	}
-	.player-board.eliminated {
-	background-color: var(--header-bg) !important;
-	}
-	.board_fake_input {
-	background-color: var(--input-bg);
-	border-color: var(--color-border-default);
-	color: var(--text);
-	}
-	.textarea_status_empty,
-	.readonly_textarea {
-	background-color: var(--input-bg);
-	}
-	.bga-omni-bar-panel-players__list.svelte-11apq7r > .svelte-11apq7r, .bga-omni-bar-panel-groups__group.svelte-1houta.svelte-1houta {
-	background-color: var(--section-bg);
-	}
-	.statstable th {
-	background-color: #934f10;
-	}
+  }
+  input,
+  select {
+    background-color: var(--input-bg);
+    border-color: var(--color-border-default);
+  }
+  .bga-textfield {
+      background-color: var(--input-bg) !important;
+  }
+  .player-board.eliminated {
+    background-color: var(--header-bg) !important;
+  }
+  .board_fake_input {
+    background-color: var(--input-bg);
+    border-color: var(--color-border-default);
+    color: var(--text);
+  }
+  .textarea_status_empty,
+  .readonly_textarea {
+    background-color: var(--input-bg);
+  }
+  .bga-omni-bar-panel-players__list.svelte-11apq7r > .svelte-11apq7r, .bga-omni-bar-panel-groups__group.svelte-1houta.svelte-1houta {
+    background-color: var(--section-bg);
+  }
+  .statstable th {
+    background-color: #934f10;
+  }
 	body {
 		color: var(--text);
 		background: imageBg;
 	}
 	
-	
-	/* other pages (e.g. Game Homepages + Player Menu (Side panel))*/
+	/* Server status*/
+
+	#myChart > div > div {
+		color: var(--text) !important;
+	}
+	#myChart > svg > rect {
+		fill: var(--main-content-bg);
+	}
+	#myChart > svg > g > line {
+		stroke: var(--text);
+	}
+	#myChart > svg > g > g > g > rect {
+		filter: brightness(.8) saturate(1.3);
+	}
+
+  
+  
+  /* other pages (e.g. Game Homepages + Player Menu (Side panel))*/
 	img[src="https://x.boardgamearena.net/data/grouparms/noimage_tournament_50.png"], div[style*="url(https://x.boardgamearena.net/data/grouparms/noimage_tournament_50.png)"] {
 		filter: invert(.9);
 	}
@@ -298,11 +396,11 @@
 	.bga-player-menu {
 		background: linear-gradient(0deg, var(--popover-bg), var(--section-bg) 60%, var(--popover-bg)) !important;
 	}
-	.bga-player-menu__tab.svelte-1aakm0e.svelte-1aakm0e, #lobby_invite_friend_zone {
-		color: var(--button);
+	.bga-player-menu__tab, #lobby_invite_friend_zone {
+		color: var(--button) !important;
 	}
-	.bga-player-menu__tab.svelte-1aakm0e.svelte-1aakm0e:hover, .bga-player-menu__tab--active.svelte-1aakm0e.svelte-1aakm0e, .text-bga-link-active {
-		color: var(--button-hover);
+	.bga-player-menu__tab:hover, .bga-player-menu__tab--active, .text-bga-link-active {
+		color: var(--button-hover) !important;
 	}
 	.bg-bga-link-active, .search-item--game.svelte-4occeg {
 		background-color: var(--button-hover);
@@ -314,7 +412,7 @@
 		background: rgba(0, 0, 0, 0) linear-gradient(rgb(25, 25, 25) 0%, rgb(18, 18, 18) 80%) repeat scroll 0% 0% !important;
 	}
 	.bga-dropdown-button-split > svg {
-	filter: invert(0.9) !important;
+    filter: invert(0.9) !important;
 	}
 	.panel-links__link.svelte-fxbql7.svelte-fxbql7:hover {
 		background-color: var(--page-bg2) !important;
@@ -322,71 +420,72 @@
 	.bg-bga-gray-211 {
 		background-color: var(--header-bg);
 	}
-	.player_is_at_table .gametable.gametable_status_init, .player_is_at_table .gametable.gametable_status_open {
-	background-color: #3d3f31;
-	}
-	.bga-page-section > .bga-page-section__content {
-	background-color: var(--header-bg);
-	background-image: linear-gradient(180deg, var(--header-bg2), var(--header-bg));
-	}
-	.bg-bga-graybg {
-	background-color: #272e38;
-	}
-	.bga-collapse-icon.svelte-1lkyka4 {
-	background-image: linear-gradient(180deg, var(--popover-bg), var(--popover-bg));
-	}
-	.bg-bga-graybg-2 {
-	--tw-bg-opacity: 0.1;
-	}
-	.bga-game-panel-medias-box__icon.svelte-hc6gll {
-	background-color: var(--header-bg);
-	}
-	.bga-game-panel-medias-box__icon--active.svelte-hc6gll {
-	background-color: var(--header-bg2);
-	}
-	.bg-bga-whitebg {
-	background-color: var(--header-bg2);
-	}
+  .player_is_at_table .gametable.gametable_status_init, .player_is_at_table .gametable.gametable_status_open {
+    background-color: #3d3f31;
+  }
+  .bga-page-section > .bga-page-section__content {
+    background-color: var(--header-bg);
+    background-image: linear-gradient(180deg, var(--header-bg2), var(--header-bg));
+  }
+  .bg-bga-graybg {
+    background-color: #272e38;
+  }
+  .bga-collapse-icon.svelte-1lkyka4 {
+    background-image: linear-gradient(180deg, var(--popover-bg), var(--popover-bg));
+  }
+  .bg-bga-graybg-2 {
+    --tw-bg-opacity: 0.1;
+  }
+  .bga-game-panel-medias-box__icon.svelte-hc6gll {
+    background-color: var(--header-bg);
+  }
+  .bga-game-panel-medias-box__icon--active.svelte-hc6gll {
+    background-color: var(--header-bg2);
+  }
+  .bg-bga-whitebg {
+    background-color: var(--header-bg2);
+  }
 	.panel-bullet-1, .panel-bullet-2, .panel-bullet-3 {
 		background-color: var(--text);
 	}
-	.extended_message_hidden::after {
-	background: linear-gradient(180deg, hsla(0, 0%, 95%, 0), var(--section-bg));
-	}
-	.bga-button-dropdown-item.svelte-1a8iggi:hover {
-	background-color: var(--header-hover);
-	}
-	.notouch-device .bga-hover-for-list:hover {
-	background: linear-gradient(180deg, var(--header-hover), var(--header-hover));
-	}
-	.notification-holder.notification-unread.svelte-1ikzr2c.svelte-1ikzr2c {
-	color: #888888;
-	}
-	.bga_big_input {
-	background-color: var(--input-bg);
-	border: 1px solid var(--color-border-default);
-	color: var(--text);
-	}
-	#search_icon {
-	color: var(--text);
-	}
-	.pagesection__title,
-	.portlet h3 {
-	padding-left: 1rem;
-	}
-	.standard_popin_underlay {
-	background-color: #333;
-	}
-	.playerstart_content {
-	background-color: var(--header-bg);
-	}
-	.progressbar {
-	background-color: var(--header-hover);
-	}
-	.standard_popin .expanded .achievement {
-	background-color: var(--section-bg);
-	border-color: var(--color-border-default);
-	}
+  .extended_message_hidden::after {
+    background: linear-gradient(180deg, hsla(0, 0%, 95%, 0), var(--section-bg));
+  }
+  .bga-button-dropdown-item.svelte-1a8iggi:hover {
+    background-color: var(--header-hover);
+  }
+  .notouch-device .bga-hover-for-list:hover {
+    background: linear-gradient(180deg, var(--header-hover), var(--header-hover));
+  }
+  .notification-holder.notification-unread.svelte-19axmf1.svelte-19axmf1 {
+    color: #888888;
+		background-color: var(--notif)
+  }
+  .bga_big_input {
+    background-color: var(--input-bg);
+    border: 1px solid var(--color-border-default);
+    color: var(--text);
+  }
+  #search_icon {
+    color: var(--text);
+  }
+  .pagesection__title,
+  .portlet h3 {
+    padding-left: 1rem;
+  }
+  .standard_popin_underlay {
+    background-color: #333;
+  }
+  .playerstart_content {
+    background-color: var(--header-bg);
+  }
+  .progressbar {
+    background-color: var(--header-hover);
+  }
+  .standard_popin .expanded .achievement {
+    background-color: var(--section-bg);
+    border-color: var(--color-border-default);
+  }
 	
 	a#pilink {
 		font-size: ((easterEgg=='pi' || easterEgg=='all') ? 1500% : inherit);
@@ -412,7 +511,19 @@
 		border: var(--highlight-bg);
 		color: var(--text);
 	}
-	
+    /*birthdate needed*/
+    .bga-cue-tooltip__path.svelte-1pclzgx > defs > linearGradient > stop:nth-child(1) {
+        stop-color: var(--button);
+    }
+	.bga-cue-tooltip__path.svelte-1pclzgx > defs > linearGradient > stop:nth-child(2) {
+        stop-color: var(--header-bg);
+    }
+    
+    /* Account settings */
+    .grid.svelte-1utb1ny > div.svelte-1utb1ny:nth-child(6n-2), .grid.svelte-1utb1ny > div.svelte-1utb1ny:nth-child(6n-1), .grid.svelte-1utb1ny > div.svelte-1utb1ny:nth-child(6n) {
+        background-color: var(--highlight-bg)
+    }
+    
 	/*Loading*/
 	.bga-loading-mask {
 		background-color: rgba(0,0,0,.5) !important;
@@ -426,10 +537,15 @@
 	.arrow.svelte-1dmnfk0.svelte-1dmnfk0 {
 		background-color: rgba(0, 0, 0, 0.2);
 	}
-	/*    Publisher logos (fixing gamewright's logo)*/
-	img[src="https://x.boardgamearena.net/data/gamemedia/sushigo/publisher/0.png?h=1651658852"] {
-	filter: invert(0.9);
+  /*    Publisher logos (fixing gamewright's logo)*/
+  img[src="https://x.boardgamearena.net/data/gamemedia/sushigo/publisher/0.png?h=1651658852"] {
+    filter: invert(0.9);
+  }
+	/* Game showing video controls */
+	div[class*="hover:text-bga-blue"]:hover {
+		color: var(--link)
 	}
+	
 	/*New Learn/Play Look*/
 	.bga-button-dropdown-item.svelte-1a8iggi {
 		border-bottom-color: var(--popover-bg);
@@ -440,26 +556,26 @@
 	.bga-invite-player-modal__table-link.svelte-12bycfo {
 		background: var(--popover-bg) !important;
 	}
-	.bga-lobby-player-slot__modal-top--admin.svelte-1669tmd .bga-lobby-player-slot__modal-top-avatar-bg.svelte-1669tmd, .bg-bga-link {
-		background-color: ((mainTheme==4) ? var(--link2) : #1a57a7);
+	.bga-lobby-player-slot__modal-top--admin.svelte-uvkc77 .bga-lobby-player-slot__modal-top-avatar-bg.svelte-uvkc77, .bg-bga-link {
+		background-color: var(--button) !important;
 	}
-	.bga-game-panel--status-tournaments.svelte-18dery7 .bga-game-panel__content-divider-background.svelte-18dery7, .bga-game-panel--status-quick-play.svelte-18dery7 .bga-game-panel__content-divider-background.svelte-18dery7, .bga-game-panel--status-quick-play.svelte-ciifuc .bga-game-panel__content-divider-background.svelte-ciifuc {
-		background: linear-gradient(((mainTheme==4) ? #322 : var(--popover-bg)), rgba(0, 0, 0, 0) 300px);
+	.bga-game-panel--status-tournaments .bga-game-panel__content-divider-background, .bga-game-panel--status-quick-play .bga-game-panel__content-divider-background, .bga-game-panel--status-arena .bga-game-panel__content-divider-background {
+		background: linear-gradient(((mainTheme==4) ? #322 : var(--popover-bg)), rgba(0, 0, 0, 0) 300px) !important;
 	}
-	.title-watermark.svelte-8ifenv {
-		opacity:0.04;
+	.title-watermark {
+ 		opacity:0.04 !important;
 	}
-	.bga-game-panel--status-tournaments.svelte-18dery7 .bga-game-panel__content-divider-line.svelte-18dery7, .bga-game-panel--status-quick-play.svelte-18dery7 .bga-game-panel__content-divider-line.svelte-18dery7, .bga-game-panel--status-quick-play.svelte-ciifuc .bga-game-panel__content-divider-line.svelte-ciifuc {
-		border-top-color: var(--color-border-default);
+	.bga-game-panel--status-tournaments .bga-game-panel__content-divider-line, .bga-game-panel--status-quick-play .bga-game-panel__content-divider-line, .bga-game-panel--status-arena .bga-game-panel__content-divider-line {
+		border-top-color: var(--color-border-default) !important;
 	}
-	.panel-block--buttons__right-arrows.svelte-12pdu27 {
-		filter: brightness(0);
+	.panel-block--buttons__right-arrows {
+		filter: brightness(0) !important;
 	}
 	.bga-collapse-icon.svelte-1sfzrz0 {
 		background-image: linear-gradient(0deg, var(--section-bg2), var(--section-bg)) !important;
 	}
-	.panel-block--buttons__play-wrapper--glow.svelte-g0rhr9 {
-		background-image: linear-gradient(180deg, ((mainTheme==0) ?  #2b2929 : (mainTheme==1) ?  #213742 : var(--popover-bg) ) calc(100% - 45px), var(--header-bg2) 100%);
+	.panel-block--buttons__play-wrapper--glow.svelte-g0rhr9, .panel-block--buttons__play-wrapper--firsttime {
+		background-image: linear-gradient(180deg, ((mainTheme==0) ?  #2b2929 : (mainTheme==1) ?  #213742 : var(--popover-bg) ) calc(100% - 45px), var(--header-bg2) 100%) !important;
 	}
 	.bga-player-count-dropdown__dot > svg > circle, div.bga-dropdown-option > div > div > svg > circle, .bg-gray-200 > div > span > svg > circle:not(.truncate > span > svg > circle), .bga-game-option-item-choice__selector.svelte-smdgd9 > div > svg > circle, .bga-game-option-item-choice__option.svelte-smdgd9 > div > svg > circle, div.text-lg > div > svg > circle, .bga-game-option-form > div > div > div > div > div > svg > circle {
 		fill: var(--forum-hover); /*The little dot shown on a default setting*/
@@ -467,7 +583,7 @@
 	.text-bga-gray-78, .bga-page-section > .bga-page-section__title {
 		color: var(--text4);
 	}
-	.rounded-2xl:hover, .m-2:hover, div.leading-none:hover, .text-bga-gray-171:hover {
+	.rounded-2xl:hover, .m-2:hover, div.leading-none:hover {
 		background-color: rgba(211, 211, 211, .1) !important;
 	}
 	/*div.bga-tooltip.svelte-scao5p { /*Explaining popovers
@@ -477,24 +593,27 @@
 	.rounded-2xl > div > svg {
 		filter: saturate(1.4);
 	}
-	.bga-lobby-table-item.svelte-zhbh1d.svelte-zhbh1d {
-		background: linear-gradient(to top, var(--header-bg2) 0%, var(--header-bg2) 100%);
+	.bga-lobby-table-item.svelte-rdj81s.svelte-rdj81s, .bga-button--gray {
+		background: linear-gradient(to top, var(--section-bg) 0%, var(--header-bg) 100%) !important;
 	}
-	.bga-lobby-table-item.svelte-zhbh1d.svelte-zhbh1d:hover {
-	background: linear-gradient(to bottom, var(--section-bg2) 0%, var(--section-bg2) 89%, var(--section-bg) 100%);
+    .bga-button--gray.svelte-1yagdd.svelte-1yagdd {
+        color: var(--link);
+    }
+	.bga-lobby-table-item.svelte-rdj81s.svelte-rdj81s:hover {
+  	background: var(--forum-hover);
 	}
-	.bga-game-option-item-choice__option.svelte-smdgd9 {
-	background: rgba(0, 0, 0, 0) linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%) repeat scroll 0% 0% !important;
-	}
-	.bga-game-option-item-choice__option.svelte-smdgd9::after {
+	.bga-game-option-item-choice__option.svelte-s4koov {
+    background: rgba(0, 0, 0, 0) linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%) repeat scroll 0% 0% !important;
+  }
+	.bga-game-option-item-choice__option.svelte-s4koov::after {
 		background-color: var(--color-border-default);
 	}
-	.bga-game-option-item-choice__selector.svelte-smdgd9, .bga-game-option-messages__option-description.svelte-13ocvdr, .bga-game-option-item-bool.svelte-n7lgf1 {
-	background-color: var(--highlight-bg);
-	background-image: linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%)
-	}
-	.bga-game-option-item-choice__selector.svelte-smdgd9:hover, .bga-game-option-item-bool.svelte-n7lgf1:hover {
-	background-image: linear-gradient(180deg, var(--highlight-bg) 0%, var(--section-bg) 30%, var(--highlight-bg) 100%);
+  .bga-game-option-item-choice__selector.svelte-s4koov, .bga-game-option-messages__option-description.svelte-13ocvdr, .bga-game-option-item-bool.svelte-n7lgf1 {
+    background-color: var(--highlight-bg);
+    background-image: linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%)
+  }
+	.bga-game-option-item-choice__selector.svelte-s4koov:hover, .bga-game-option-item-bool.svelte-n7lgf1:hover {
+  	background-image: linear-gradient(180deg, var(--highlight-bg) 0%, var(--section-bg) 30%, var(--highlight-bg) 100%);
 	}
 	.bga-toggle__slider.svelte-xkje4o.svelte-xkje4o {
 		background: linear-gradient( 180deg, hsl(0, 0%, 12%) 00%, hsl(0, 0%, 16%) 40%, hsl(0, 0%, 12%) 60%, hsl(0, 0%, 8%) 100% );
@@ -504,12 +623,24 @@
 	.bga-toggle.svelte-xkje4o.svelte-xkje4o {
 		background: #050505;
 	}
-	div.bga-lobby-table-item__inner.svelte-zhbh1d > div.absolute.inset-0 > div {
-	background: linear-gradient(to bottom, var(--section-bg) 0%, var(--section-bg) 89%, var(--header-bg) 100%);
+	.bga-lobby-table-item__border {
+  	background: linear-gradient(to bottom, var(--section-bg) 0%, var(--section-bg) 89%, var(--header-bg) 100%);
 	}
-	div.bga-lobby-table-item__inner.svelte-zhbh1d > div.absolute.inset-0 > svg > polygon {
+	.bga-lobby-table-item__pointer.svelte-rdj81s.svelte-rdj81s > polygon {
 		fill: var(--section-bg);
 	}
+	.bga-lobby-table-item__border.svelte-rdj81s.svelte-rdj81s, .bga-panel-table-configuration--selected.svelte-19b2c85, .panel-block--buttons__play-wrapper.svelte-g0rhr9 {
+		border-color: var(--button);
+	}
+	
+	/*Game Speed Slider*/
+	.bga-lobby-speed-selector__part1.svelte-2t6bli.svelte-2t6bli {
+		background: linear-gradient(90deg, #3ab596 0%, #3d90aa 100%);
+	}
+	.bga-lobby-speed-selector__slider.svelte-2t6bli.svelte-2t6bli[style*="transform: translateX(23."] {
+		background: linear-gradient(0deg, #0007 0%, #0000 70%), #45c1a9 !important;
+	}
+	
 	.bgabutton_darkgray {
 		background: linear-gradient(180deg,#333,#252626);
 	} .bgabutton_darkgray:hover {
@@ -522,7 +653,7 @@
 		background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 300px);
 	}
 	.bga-game-panel--status-quick-play.svelte-1h65at6 .bga-game-panel__content-divider-line.svelte-1h65at6, .bga-game-panel--status-arena.svelte-1h65at6 .bga-game-panel__content-divider-line.svelte-1h65at6 {
-		border-color: var(--color-border-default)
+		border-color: var(--color-border-default);
 	}
 	.bga-invite-player-modal__table-link.svelte-12bycfo { /*Viewing a player's info*/
 		background: linear-gradient(to top, rgb(121, 121, 121) 0%, rgb(110, 110, 110) 100%);
@@ -530,14 +661,26 @@
 		background-color: var(--popover-bg);
 	}
 	
+	.bgabutton_gray::after {
+		border-color: var(--color-border-default);
+	}
+	
+		/* tables list 
+	.bga-lobby-table-item.svelte-rdj81s.svelte-rdj81s {
+		background: var(--section-bg);
+	}
+	.bga-lobby-table-item.svelte-rdj81s.svelte-rdj81s:hover {
+		background: var(--forum-hover);
+	}*/
+	
 	/*No Result*/
 	div.box-border[style*="linear-gradient(rgb(234"] {
 		background: rgba(0, 0, 0, 0) linear-gradient(var(--main-content-bg), var(--section-bg)) repeat scroll 0% 0% !important;
 	}
 	
 	/*Checkboxes*/
-	.bga-checkbox.svelte-1pi23ob.svelte-1pi23ob {
-		background-color: var(--color-border-default);
+	.bga-checkbox:not(.bga-checkbox:hover) {
+		background-color: var(--color-border-default) !important;
 	}
 	.bga-checkbox--size-lg {
 		if(mainTheme==4) {
@@ -565,30 +708,38 @@
 		--check-color: #06c41e !important;
 		--background-color-faded: #37700780 !important;
 	}
+    
+    /*Generally colorured checkboxes*/
+    .bga-checkbox--checked.svelte-14fymqj .bga-checkbox .bga-checkbox__checkmark.svelte-14fymqj {
+        color: var(--button)
+    }
+    .bga-checkbox--wrap.svelte-14fymqj:hover .bga-checkbox.svelte-14fymqj {
+        background-color: var(--button2)
+}
 	
 	/*Sidepnanel*/
 	.bga-matchmaking-list-item.svelte-15o9oue:hover {
 		  background: linear-gradient(180deg, var(--header-hover), var(--header-hover));
 	}
-	
-	/*Game popup on hovering after searching for it
-	.flex-1 .flex .flex-col .h-0 .rounded-md {
-	background: rgba(0, 0, 0, 0) linear-gradient(0deg, rgb(10, 10, 10) 0%, rgb(20, 20, 20) 50%) repeat scroll 0% 0%;
-	}*/
-	/*Chat*/
-	.chatwindowpreviewmsg {
-	background-color: var(--highlight-bg);
-	}
-	.notouch-device .predefined_message:hover,
-	.notouch-device .predefined_textmessage:hover {
-	background-color: var(--highlight-bg);
-	}
-	.chatinput::placeholder {
-	color: var(--text);
-	}
-	.roundedbox .roundedboxinner {
-	color: var(--text);
-	}
+  
+  /*Game popup on hovering after searching for it
+  .flex-1 .flex .flex-col .h-0 .rounded-md {
+    background: rgba(0, 0, 0, 0) linear-gradient(0deg, rgb(10, 10, 10) 0%, rgb(20, 20, 20) 50%) repeat scroll 0% 0%;
+  }*/
+  /*Chat*/
+  .chatwindowpreviewmsg {
+    background-color: var(--highlight-bg);
+  }
+  .notouch-device .predefined_message:hover,
+  .notouch-device .predefined_textmessage:hover {
+    background-color: var(--highlight-bg);
+  }
+  .chatinput::placeholder {
+    color: var(--text);
+  }
+  .roundedbox .roundedboxinner {
+    color: var(--text);
+  }
 	
 	/*Translate*/
 	#translationwarning {
@@ -603,122 +754,150 @@
 	.active_textarea:focus-within {
 		background-color: var(--popover-bg);
 	}
-	
-	/*Contribute to BGA page*/
-	.pagesection__content .controlpanelmenu {
-	background-color: var(--section-bg);
-	}
-	.controlpanelmenu > img {
-	filter: grayscale(1) invert(0.85);
-	}
-	.controlpanelmenu .subtitle {
-	color: var(--text);
-	}
-	
-	/* Achievments */
-	.notouch-device .expanded .achievement:hover {
-	background-color: var(--section-bg);
-	}
+
+  /*Contribute to BGA page*/
+  .pagesection__content .controlpanelmenu {
+    background-color: var(--section-bg);
+  }
+  .controlpanelmenu > img {
+    filter: grayscale(1) invert(0.85);
+  }
+  .controlpanelmenu .subtitle {
+    color: var(--text);
+  }
+  
+  /* Achievments */
+  .notouch-device .expanded .achievement:hover {
+    background-color: var(--section-bg);
+  }
 	.expanded .achievement_container.topleft {
 		filter: invert(0.8) brightness(1.7) contrast(((mainTheme==0) ? 3 : 2.5)) hue-rotate(0.5turn)
 	}
-	.achievement_container.top,
-	.achievement_container.bottom {
-	filter: ((mainTheme==4) ? invert(0.9) hue-rotate(0.5turn) : invert(0.89));
-	}
-	.challenge_image {
-	filter: brightness(1.5) grayscale(1);
-	}
+  .achievement_container.top,
+  .achievement_container.bottom {
+    filter: ((mainTheme==4) ? invert(0.9) hue-rotate(0.5turn) : invert(0.89));
+  }
+  .challenge_image {
+    filter: brightness(1.5) grayscale(1);
+  }
 	.awards-list__tooltip {
 		background-color: var(--popover-bg) !important;
 	}
-	
-	/* Games Page */
+  
+  /* Games Page */
+	.bga-sub-menu.svelte-w3p84l {
+		background-color: var(--header-hover);
+	}
+	.arrow.svelte-vefo8a.svelte-vefo8a {
+		filter: brightness(.9) invert(1) saturate(1.8) hue-rotate(((mainTheme==4) ? -20 : (mainTheme==3) ? 80 : (mainTheme==2) ? 140 : 180)deg);
+	}
 	.bga-subtle-scrollbars {
 		scrollbar-color: var(--header-hover) var(--header-bg);
 	}
-	.bga-game-browser__panel.svelte-x617ll.svelte-x617ll {
-	background: var(--header-bg2);
-	}
-	.arrow.svelte-ppcln.svelte-ppcln {
-	background-color: rgba(30, 35, 40, 0.8)
-	}
-	div.bga-dropdown-button-value, .bg-gray-200 {
-	background: rgba(0, 0, 0, 0) linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%) repeat scroll 0% 0% !important;
-	}
-	.bg-gray-200:hover {
+  .bga-game-browser__panel.svelte-x617ll.svelte-x617ll {
+    background: var(--header-bg2);
+  }
+  .arrow.svelte-ppcln.svelte-ppcln {
+    background-color: rgba(30, 35, 40, 0.8)
+  }
+  div.bga-dropdown-button-value, .bg-gray-200 {
+    background: rgba(0, 0, 0, 0) linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%) repeat scroll 0% 0% !important;
+  }
+	.bg-gray-200:hover, [class*="hover:bg-bga-gray-233"]:hover {
 		background: var(--section-bg) !important;
 	}
-	.bga-checkbox.svelte-xx51yh.svelte-xx51yh {
-	background-color: var(--highlight-bg);
-	background-image: linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%)
+  .bga-checkbox.svelte-xx51yh.svelte-xx51yh {
+    background-color: var(--highlight-bg);
+    background-image: linear-gradient(rgb(8, 9, 8) 0%, rgb(13, 13, 13) 80%)
+  }
+  .bg-gray-200  {
+    border-bottom: 2px solid var(--color-border-default) !important;
+  }
+  div.bga-checkbox--wrap.flex.items-center.cursor-pointer.svelte-xx51yh.bga-checkbox--size-lg.bga-checkbox--checked > .bga-checkbox.svelte-xx51yh .bga-checkbox__checkmark svg.svelte-xx51yh {
+    --displayXMark: (showX) ? 1 : 0; 
+    opacity: var(--displayXMark) !important;
+  }
+	
+	.absolute.rounded[style*="border: 5px solid rgb(1"][style*="64"][style*="144"] {
+		border-color: var(--button) !important;
 	}
-	.bg-gray-200  {
-	border-bottom: 2px solid var(--color-border-default) !important;
-	}
-	div.bga-checkbox--wrap.flex.items-center.cursor-pointer.svelte-xx51yh.bga-checkbox--size-lg.bga-checkbox--checked > .bga-checkbox.svelte-xx51yh .bga-checkbox__checkmark svg.svelte-xx51yh {
-	--displayXMark: (showX) ? 1 : 0; 
-	opacity: var(--displayXMark) !important;
+	.absolute.rounded[style*="border: 2px solid rgb(131"][style*="152"][style*="178"] {
+		border-color: var(--button-hover) !important;
 	}
 	
-	w-full text-center box-border {
-	background-color: var(--main-content-bg);
+	/* Favourites */
+	.bga-quick-play-widget__item.svelte-1s7mdl1 {
+	  background: var(--section-bg);
 	}
+	.bga-quick-play-widget__item.svelte-1s7mdl1:hover {
+		background: var(--section-bg2)
+	}
+	.bg-bga-gray-244 {
+		background: var(--main-bg-colour)
+	}
+	
+	/*Easter eggs*/
+  w-full text-center box-border {
+    background-color: var(--main-content-bg);
+  }
 	.fa-close::before, .fa-remove::before, .fa-times::before {
 		content: ((easterEgg=='meat' || easterEgg=='all') ? '🍗' : '\f00d');
 	}
 	.fa-clock-o::before {
-	content: ((easterEgg=='clock' || easterEgg=='all') ? '🕕': '\f017');
+  	content: ((easterEgg=='clock' || easterEgg=='all') ? '🕕': '\f017');
 	}
 	.fa-heart::before {
 		content: ((easterEgg=='green' || easterEgg=='all') ? '💚': '\f004');
 	}
 	.optionRightIcon--unset.svelte-v2udb {
-		color: var(--input-bg);
+		color: var(--text3);
 	} .optionRightIcon--set.svelte-v2udb {
 		color: var(--link);
 	}
-	/*-full text-center box-border*/
-	
-	/*Arena Seasons*/
-	.desktop_version .own-progress-wrap,
-	.mobile_version .own-progress-wrap {
-	background-color: var(--section-bg);
-	}
-	.desktop_version .overall-stats-wrap,
-	.mobile_version .overall-stats-wrap {
-	background-image: linear-gradient(180deg, #25252c88, #2a2a3401);
-	}
-	.own-progress-background {
-	background-image: linear-gradient(180deg, #6c768e, #83749d);
-	}
-	.desktop_version .own-progress-text {
-	color: var(--text);
-	}
-	.desktop_version .hof-league-progress-bar-bottom-infos {
-	color: #1e52bc !important;
-	}
-	.desktop_version .season-progress-bar-wrap,
-	.mobile_version .season-progress-bar-wrap {
-	background-color: #000;
-	}
-	.season-progress-histogram-bar {
-	background-color: #0002
-	}
-	.histogram-bar-separator {
-	background-image: linear-gradient(0deg, #0002, #0000);
-	}
+  
+  /*Arena Seasons*/
+  .desktop_version .own-progress-wrap,
+  .mobile_version .own-progress-wrap {
+    background-color: var(--section-bg);
+  }
+  .desktop_version .overall-stats-wrap,
+  .mobile_version .overall-stats-wrap {
+    background-image: linear-gradient(180deg, #25252c88, #2a2a3401);
+  }
+  .own-progress-background {
+    background-image: linear-gradient(180deg, #6c768e, #83749d);
+  }
+  .desktop_version .own-progress-text {
+    color: var(--text);
+  }
+  .desktop_version .hof-league-progress-bar-bottom-infos {
+    color: #1e52bc !important;
+  }
+  .desktop_version .season-progress-bar-wrap,
+  .mobile_version .season-progress-bar-wrap {
+    background-color: #000;
+  }
+  .season-progress-histogram-bar {
+    background-color: #0002
+  }
+  .histogram-bar-separator {
+    background-image: linear-gradient(0deg, #0002, #0000);
+  }
 	a[style*="color:white"] > i.fa {
 		color: white !important;
 	}
-	
-	/*Tournaments*/
+  
+  /*Tournaments*/
 	.bga-tournament-list-item__details.svelte-1nk342e > div > div > svg {
 		fill: var(--text4);
 	}
-	.text-gray-500:hover {
-		background-color: var(--forum-hover) !important;
+	#filter_text:focus-visible {
+		outline: 2px solid var(--link2);
+		border-radius: 2px;
 	}
+	/*.text-gray-500:hover:not(.mx-16):not(.leading-tight) {
+		background-color: var(--forum-hover) !important;
+	}*/
 	.tournaments-list-result__indicator, .gametable_colored_indicator {
 		filter: invert(.8) hue-rotate(180deg) !important;
 	}
@@ -740,89 +919,140 @@
 	.bga-tournament-list-item__emblem-holder.svelte-1jhmrwa.svelte-1jhmrwa {
 		background-color: var(--color-border-default);
 	}
-	a.tournaments-list-result,
-	.bga-panel-tournaments__upper-row.svelte-9xptfj.svelte-9xptfj {
-	background-color: var(--section-bg);
+  a.tournaments-list-result,
+  .bga-panel-tournaments__upper-row.svelte-9xptfj.svelte-9xptfj {
+    background-color: var(--section-bg);
+  }
+  a.tournaments-list-result:hover,
+  .bga-panel-tournaments__emblem-holder.svelte-9xptfj.svelte-9xptfj {
+    background-color: var(--popover-bg);
+  }
+  a.tournaments-list-result {
+    border: 1px solid var(--color-border-default);
+  }
+  .tournaments-list-result__players {
+    background: var(--color-border-default);
+		padding-left: 1%;
+  }
+	.tournaments-list-result__date, .tournaments-list-result__gameinfo, .tournaments-list-result__players-max {
+		color: var(--text2)
 	}
-	a.tournaments-list-result:hover,
-	.bga-panel-tournaments__emblem-holder.svelte-9xptfj.svelte-9xptfj {
-	background-color: var(--popover-bg);
+  .tournaments-list-result__date span {
+    color: var(--text3);
+  }
+  .tournaments-list-result__championship {
+    color: var(--text);
+  }
+  .tournaments-presentation {
+    background: var(--page-bg);
+  }
+  .tournaments-mode-presentation__image {
+    background-color: #5551;
+    border: 3px solid var(--color-border-default);
+  }
+  .tournaments-presentation-status__global,
+  .tournaments-mode-presentation__name {
+    color: var(--text);
+  }
+  .tournaments-mode-presentation__description {
+    color: #aaa;
+  }
+	.tournaments-list-filters label:hover {
+		color: var(--button-hover);
 	}
-	a.tournaments-list-result {
-	border: 1px solid var(--color-border-default);
-	}
-	.tournaments-list-result__players {
-	background: var(--color-border-default);
-	}
-	.tournaments-list-result__date span {
-	color: #555;
-	}
-	.tournaments-list-result__championship {
-	color: var(--text);
-	}
-	.tournaments-presentation {
-	background: var(--page-bg);
-	}
-	.tournaments-mode-presentation__image {
-	background-color: #5551;
-	border: 3px solid var(--color-border-default);
-	}
-	.tournaments-presentation-status__global,
-	.tournaments-mode-presentation__name {
-	color: var(--text);
-	}
-	.tournaments-mode-presentation__description {
-	color: #aaa;
-	}
-	/*.pagesection__content > div {
-	background-color: var(--main-content-bg) !important;
-	}*/
-	div.pagesection__content[style="background: white"] {
-	background-color: var(--section-bg) !important;
-	}
-	.tournaments-presentation__subtitle-block {
-	background-color: hsla(0,0%,0%,.2);
-	box-shadow: 0 0 4px hsla(0,0%,20%,.6);
-	}
-	.tournaments-presentation__gamebanner-overlay {
-	background: rgba(0, 0, 0, .6);
-	}
-	.tournaments-presentation__gamebanner-wrapper {
-	box-shadow: 0 5px 5px var(--section-bg);
-	}
+  /*.pagesection__content > div {
+    background-color: var(--main-content-bg) !important;
+  }*/
+  div.pagesection__content[style="background: white"] {
+    background-color: var(--section-bg) !important;
+  }
+  .tournaments-presentation__subtitle-block {
+    background-color: hsla(0,0%,0%,.2);
+    box-shadow: 0 0 4px hsla(0,0%,20%,.6);
+  }
+  .tournaments-presentation__gamebanner-overlay {
+    background: rgba(0, 0, 0, .6);
+  }
+  .tournaments-presentation__gamebanner-wrapper {
+    box-shadow: 0 5px 5px var(--section-bg);
+  }
 	
 	/*Tutorials*/
 	.fa-minus-square-o::before {
 		filter: invert(0.6);
 	}
-	
-	/*Fixing texts*/
-	a, .gamename, .bga-link, .text-bga-link, .text-bga-blue, .text-bga-gamename, .bga-dropdown-button.svelte-7mom1l.svelte-7mom1l, .panel-learn-game.svelte-1mta182 b, .bga-dropdown-button.svelte-1ucf0sb.svelte-1ucf0sb, .bga-username {
-	color: var(--link) !important;
+  
+  /*Fixing texts*/
+  a:not(.progressbar_valuename > a, .bga-button--light-green), .gamename, .bga-link, .text-bga-link, .text-bga-blue, .text-bga-gamename, .bga-dropdown-button.svelte-1gjd2o8.svelte-1gjd2o8, .panel-learn-game.svelte-1mta182 b, .bga-dropdown-button, .bga-username, .playername,
+	.tournaments-list-result__gamename, .visitor-intro-text b {
+    color: var(--link) !important;
+  }
+	.progressbar_valuename > a {
+		color: #fff !important;
 	}
-	.text-gray-500, .text-gray-600{
+	.language_preference_tip {
+		background-color: var(--popover-bg);
+		border-color: var(--button)
+	}
+	if(linksType!=1) {
+		.bga-link--active, .bga-link-inside a:not(.playername):not(.gamename):not(.bgabutton):active, .bga-link-inside a:not(.playername):not(.gamename):not(.bgabutton):hover, .bga-link:active, .bga-link:not(.playername):hover {
+			color: var(--button-hover) !important;
+		}
+		.playername {
+			color: var(--button) !important;
+		}
+		.playername:active, .playername:hover {
+			filter: brightness(.75) saturate(1.4);
+		}
+	} 
+	if(linksType==0) {
+		.bga-link--active, .bga-link-inside a:not(.playername):not(.gamename):not(.bgabutton):active, .bga-link-inside a:not(.playername):not(.gamename):not(.bgabutton):hover, .bga-link:active, .bga-link:hover, .playername:active, .playername:hover {
+			text-decoration: none;
+		}
+	}
+	.text-gray-500, .text-gray-600, .row-data .row-label, .pageheader_menuitem {
 		color: var(--text2);
 	}
+    .panel-learn-game, .game-info__label {
+        color: var(--text4) !important;
+    }
 	#pagemaintitletext > span[style*="color:#000000"] {
 		text-shadow: 0px 0px 10px #fff !important;
 	}
+	.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem.pageheader_menuitemselected {
+	  color:var(--button-hover);
+	}
+
 	
-	/*Timestamp refers to the gamelogs*/
-	#logs .timestamp {
-	color: #000;
+  /*Timestamp refers to the gamelogs*/
+  #logs .timestamp {
+    color: #000;
+  }
+  .timestamp:hover > .timestamp {
+    background-color: var(--input-bg);
+    color: var(--text);
+  }
+  .timestamp > .timestamp:hover, .text-black {
+    color: var(--text);
+  }
+  .log_replayable:hover {
+    background-color: var(--input-bg);
+  }
+	.panel-learn-game.svelte-1xr5nb9 b {
+		color: var(--button-hover);
 	}
-	.timestamp:hover > .timestamp {
-	background-color: var(--input-bg);
-	color: var(--text);
+	.panel-learn-game.svelte-1xr5nb9.svelte-1xr5nb9 {
+		color: var(--text4);
 	}
-	.timestamp > .timestamp:hover {
-	color: var(--text);
+  
+  /*Icons: pl. stats icon, laurel wreath, Arena, info*/
+	.bga-friends-icon > div > svg > path, #bga_extension_chat_icon {
+		fill: var(--button);
+		color: var(--button)
 	}
-	.log_replayable:hover {
-	background-color: var(--input-bg);
+	.upperrightmenu_item .fa-sun-o:before {
+		content: none;
 	}
-	
-	/*Icons: stat icon+laurel wreath+Arena+info*/
 	#pageheader_mobile_switcher_wrap_lobbymode .pageheader_big_switch_icon .fa-cog {
 		color: #81aab4;
 	}
@@ -830,66 +1060,96 @@
 		filter: invert(0.9) hue-rotate(170deg);
 	}
 	
-	a[href*="playerstat"] > .icon20, .icon20.icon20_suggestion {
-	filter: invert(1);
-	}
-	.icon20_stat,
-	.icon20.icon_arena {
-	filter: invert(1);
-	}
-	.panel-learn-game.svelte-1mta182 .panel-learn-game__arena-image.svelte-1mta182 {
-	filter: grayscale(100%) brightness(2.5);
-	}
-	
-	i.fa.fa-lg.fa-info-circle.more_infos {
-	color: var(--text) !important;
-	}
-	
-	.row {
-	max-width: 100%;
-	padding: 0 1rem;
-	}
-	
-	.bga-link > div[style*="https://x.boardgamearena.net/data/others/bga_goodies.jpg"] {
-	background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/BGA_goodies.png) !important;
-	}
-	.agenda-tournament-list__avatar, .icon16_duration, .icon16_nbrplayer {
-	filter: invert(0.85);
-	}
+  a[href*="playerstat"] > .icon20, .icon20.icon20_suggestion {
+    filter: invert(1);
+  }
+  .icon20_stat,
+  .icon20.icon_arena {
+    filter: invert(1);
+  }
+  .panel-learn-game.svelte-1mta182 .panel-learn-game__arena-image.svelte-1mta182 {
+    filter: grayscale(100%) brightness(2.5);
+  }
+  
+  i.fa.fa-lg.fa-info-circle.more_infos {
+    color: var(--text) !important;
+  }
+  
+  .row {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .bga-link > div[style*="https://x.boardgamearena.net/data/others/bga_goodies.jpg"] {
+    background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/BGA_goodies.png) !important;
+  }
+  .agenda-tournament-list__avatar, .icon16_duration, .icon16_nbrplayer {
+    filter: invert(0.85);
+  }
 	.bga-page-section__stat-bar.svelte-i1k73e[style*="0\, 0\, 0"], .icon16_luck {
-	filter: invert(0.9) brightness(75%);
-	}
+    filter: invert(0.9) brightness(75%);
+  }
 	
-	a.bga-menu-bar__logo-holder.flex.justify-center.items-center {
-		filter: invert(((easterEgg=='invert' || easterEgg=='all') ? 1 : (easterEgg=='gray') ? 0.5 : 0));
+	a.bga-menu-bar__logo-holder.flex.justify-center.items-center, .mw-wiki-logo {
+		filter: invert(((easterEgg=='invert' || easterEgg=='all' || mainTheme==3) ? 1 : (easterEgg=='gray') ? 0.5 : 0));
 	}
 	
 	.fa-times-circle::before {
 		filter: invert(.7);
 	}
 	
-	// Drop down icon for log out 
-	.bga-collapse-icon.svelte-1frlzrb {
+	/*Bell icon */
+	.bell > svg > path, .bell-hover > svg > path {
+		fill: #bbb;
+	}
+  .bell > svg > path:first-of-type, .bell-hover > svg > path:first-child {
+		stroke: #bbb !important;
+	}
+  .bell > svg > path:first-child {
+		fill: #808080 !important;
+	}
+  .bell-hover > svg > path:first-child {
+		fill: var(--link) !important;
+	}
+	.bell > svg > linearGradient > stop:first-child {
+		stop-color: var(--link) !important;
+	}
+	.bell > svg > linearGradient > stop:nth-child(2) {
+		stop-color: var(--link) !important;
+	}
+	
+	/* Drop down icon for log out */
+  .bga-collapse-icon.svelte-1frlzrb:not(.bga-collapse-icon--reversed.svelte-1frlzrb) {
 		background-image: linear-gradient(0deg, var(--input-bg), var(--popover-bg));
 	}
 	
-	/*Gameplay*/
-	.icon64_book,
-	.icon32_replaylastmoves,
-	.icon64_cart,
-	.icon64_whiteflag,
-	.icon64_handshake,
-	.icon64_turnbased,
-	.icon64_3d,
-	.icon64_quit,
-	.icon64_back,
-	.icon64_stop,
-	.icon64_bug {
-	filter: invert(0.8);
+	/* Arena icon */
+	.panel-learn-game.svelte-1xr5nb9 .panel-learn-game__arena-image.svelte-1xr5nb9 {
+		filter: brightness(2) grayscale(1);
 	}
-	#soundControls {
-	background: var(--popover-bg);
+	
+	/* Question mark icon */
+	.fa-question-circle-o:not(.fa-question-circle-o:hover) {
+		color: var(--text)
 	}
+  
+  /*Gameplay*/
+  .icon64_book,
+  .icon32_replaylastmoves,
+  .icon64_cart,
+  .icon64_whiteflag,
+  .icon64_handshake,
+  .icon64_turnbased,
+  .icon64_3d,
+  .icon64_quit,
+  .icon64_back,
+  .icon64_stop,
+  .icon64_bug {
+    filter: invert(0.8);
+  }
+  #soundControls {
+    background: var(--popover-bg);
+  }
 	#seemorelogs {
 		filter: ((mainTheme==4) ? invert(.7) hue-rotate(170deg) : invert(.7));
 	}
@@ -909,84 +1169,107 @@
 	.head_error {
 		background-color: #710101;
 	}
-	
-	/*Tournament table on games*/
-	.v2tournament__encounters-step:nth-child(2n+1) {
-	background-color: var(--section-bg);
-	}
-	.v2tournament__encounters-step {
-	background-color: var(--section-bg2);
-	}
-	.v2tournament {
-	background-color: var(--main-content-bg);
-	}
-	.v2tournament--bracketElimination .v2tournament__encounter-player-result {
-	color: var(--input-bg);
-	}
-	#tournament-module #group_avatar {
-	filter: invert(0.9);
-	}
-	.v2tournament__players-stats-table {
-	border: 1px solid var(--color-border-default);
-	}
-	.v2tournament__players-stats-table tr:nth-child(2n+1) td {
-	background: var(--popover-bg);
-	}
-	.v2tournament__players-stats-table td,
-	.v2tournament__encounter-wrapper {
-	background: var(--section-bg);
-	}
-	.v2tournament__encounter-wrapper {
-	border: 1px solid var(--color-border-default);
-	}
-	.v2tournament h4 {
-	background: #3d6c25;
-	}
-	.v2tournament__encounters-step-title {
-	background: linear-gradient(90deg, #3d6c25, #335323 35%, #2d4d1e);
-	}
-	.v2tournament__encounters-step-title::after {
-	border-left-color: #2d4d1e;
-	}
-	.v2tournament__encounter--status-play a.v2tournament__encounter-title {
-	background: #3d6123
-	}
-	.v2tournament__encounter--status-play a.v2tournament__encounter-title:hover {
-	background: #1f4515;
-	}
-	.v2tournament__encounter--status-play .v2tournament__encounter-progress-bar > div,
-	a.v2tournament__encounter-title,
-	a.v2tournament__encounter-title:hover {
-	background: #1d8b00
-	}
-	.v2tournament__encounter-position {
-	background: #1514
-	}
-	.v2tournament__encounter--status-skipped a.v2tournament__encounter-title {
-	background: #444;
-	}
-	.v2tournament__encounter--current a.v2tournament__encounter-title {
-	background: #3d609c;
-	}
-	.v2tournament__encounter--current a.v2tournament__encounter-title:hover {
-	background: #314d7b;
-	}
-	.v2tournament__encounter--status-play.v2tournament__encounter--current .v2tournament__encounter-progress-bar > div {
-	background: #1e4e79;
-	}
-	
-	/*Premium*/
-	.whypremium_icon {
-	filter: invert(0.5);
-	}
+  
+  /*Tournament table on games*/
+  .v2tournament__encounters-step:nth-child(2n+1) {
+    background-color: var(--section-bg);
+  }
+  .v2tournament__encounters-step {
+    background-color: var(--section-bg2);
+  }
+  .v2tournament {
+    background-color: var(--main-content-bg);
+  }
+  .v2tournament--bracketElimination .v2tournament__encounter-player-result {
+    color: var(--input-bg);
+  }
+  #tournament-module #group_avatar {
+    filter: invert(0.9);
+  }
+  .v2tournament__players-stats-table {
+    border: 1px solid var(--color-border-default);
+  }
+  .v2tournament__players-stats-table tr:nth-child(2n+1) td {
+    background: var(--popover-bg);
+  }
+  .v2tournament__players-stats-table td,
+  .v2tournament__encounter-wrapper {
+    background: var(--section-bg);
+  }
+  .v2tournament__encounter-wrapper {
+    border: 1px solid var(--color-border-default);
+  }
+  .v2tournament h4 {
+    background: #3d6c25;
+  }
+  .v2tournament__encounters-step-title {
+    background: linear-gradient(90deg, #3d6c25, #335323 35%, #2d4d1e);
+  }
+  .v2tournament__encounters-step-title::after {
+    border-left-color: #2d4d1e;
+  }
+  .v2tournament__encounter--status-play a.v2tournament__encounter-title {
+    background: #3d6123
+  }
+  .v2tournament__encounter--status-play a.v2tournament__encounter-title:hover {
+    background: #1f4515;
+  }
+  .v2tournament__encounter--status-play .v2tournament__encounter-progress-bar > div,
+  a.v2tournament__encounter-title,
+  a.v2tournament__encounter-title:hover {
+    background: #1d8b00
+  }
+  .v2tournament__encounter-position {
+    background: #1514
+  }
+  .v2tournament__encounter--status-skipped a.v2tournament__encounter-title {
+    background: #444;
+  }
+  .v2tournament__encounter--current a.v2tournament__encounter-title {
+    background: #3d609c;
+  }
+  .v2tournament__encounter--current a.v2tournament__encounter-title:hover {
+    background: #314d7b;
+  }
+  .v2tournament__encounter--status-play.v2tournament__encounter--current .v2tournament__encounter-progress-bar > div {
+    background: #1e4e79;
+  }
+  
+  /*Premium*/
+  .whypremium_icon {
+    filter: invert(0.5);
+  }
 	
 	/*    Purchase Premium*/
 	.notouch-device .blockchoice:hover {
 		background-color: var(--popover-bg);
 	}
 	.emblempremium_big, .emblempremium, .statmasked {
-		filter: ((mainTheme==4) ? invert(.7) contrast(1.6) saturate(2) hue-rotate(155deg) : inherit);
+		filter: ((mainTheme==4) ? invert(.7) contrast(1.6) saturate(2) hue-rotate(155deg) : ((mainTheme==0) ? invert(.7) hue-rotate(0deg) contrast(3) brightness(.6) : inherit));
 	}
+    .bga-premium-page-section--full.order-2, .bga-premium-page-section--full.order-5 {
+        background: var(--page-bg2) !important
+    }
+    .bga-premium-page-section--full.order-4 {
+        background: linear-gradient(0deg, var(--page-bg2) 0%, transparent 10%, transparent 60%, var(--forum-hover) 99%), url("https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/refs/heads/master/assets/images/bga-premium-bg.png") center center / cover !important
+    }
+    .bga-premium-page-section--full.order-6 {
+        background: linear-gradient(90deg, var(--page-bg2), rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.5) 60%, var(--page-bg2)), url("https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/refs/heads/master/assets/images/bga-bg-brand.png") center center / cover !important
+    }
+    .bga-premium-features_table tr {
+      background-color: var(--popover-bg) !important
+    }
+    .bga-premium-features_table tbody tr:nth-child(2n+1) {
+        background-color: var(--section-bg2) !important
+    }
+    .text-gray-700 {
+        color: var(--text2)
+    }
+    .arrow[style*="0.8);"] {
+        background-color: rgba(0, 0, 0, 0.8) !important;
+        filter: ((mainTheme=5) ? grayscale(1) brightness(1.6) : hue-rotate((mainTheme==3) ? 0.7turn : (mainTheme==2) ? 0.85turn : (mainTheme==4) ? 0.25turn : (mainTheme==6) ? 0.55turn : 0turn))
+    }
+
 	
 	/*Statistics*/
 	#graph_example_wrap {
@@ -1001,13 +1284,13 @@
 		background-color: var(--popover-bg);
 	}
 	.wannaplay_mask_button.how_to_play_button {
-		background-color: var(--link);
+		background-color: var(--button);
 	}
 	.wannaplay_mask_button.add_favorite {
-		background-color: #7b4a04;
+		background-color: ((mainTheme==5) ? #db9839 : #7b4a04);
 	}
 	.wannaplay_mask_button.add_favorite .backplus {
-		color: #7b4a04;
+		color: ((mainTheme==5) ? #db9839 : #7b4a04);
 	}
 	.copy_display, .copy_display span {
 		background-color: var(--input-bg);
@@ -1027,87 +1310,95 @@
 		background: var(--button);
 	}
 	
+	.gametable {
+		border-color: #999;
+	}
+	.notouch-device #gamelobby-module .gametable:hover {
+		border-color: var(--button-hover);
+	}
+	
 	/*Tables*/
 	.warning_high {
 		background-color: #bb0e0e;
 		border: 1px solid #680909;
 	}
-	
-	/* Main content blocks */
-	div.subtitle {
-	background-color: transparent !important;
-	}
+  
+  /* Main content blocks */
+  div.subtitle {
+    background-color: transparent !important;
+  }
 	.bga-table-list-item--searching.svelte-1di7fs3.svelte-1di7fs3 {
 		background: linear-gradient(180deg, rgba(244, 244, 244, 0.6) 20%, rgba(230, 230, 230, 0.72) 80%);
 	}
-	
-	#topbar,
-	#page-title,
-	.pageheader,
-	.roundedbox,
-	.pagesection__content,
-	.gamestate_gameEnd #page-title,
-	#server_status_warning_message,
-	.chatwindowlogs,
-	.chatwindowexpanded,
-	.notouch-device .chatwindowcollapsed:hover,
-	#maintitlebar_content,
-	.gamestart_overlay,
-	.bgabutton_gray:hover {
-	background: var(--main-content-bg);
-	background-color: var(--main-content-bg);
-	color: var(--text);
-	}
-	.tabbed_slider_bar_left,
-	.tabbed_slider_bar_right {
-	border-top: 28px solid var(--header-hover) !important;
-	}
-	.tabbed_slider_bar_barcenter {
-	background-color: var(--header-hover) !important;
-	}
-	
-	/* Header & nav */
-	.bga-menu-bar,
-	.bga-menu-subbar {
-	background: var(--header-bg) !important;
-	color: var(--text) !important;
-	}
-	
-	/* Dialog boxes, modals etc. */
-	.portlet,
-	.tips,
-	.player-board,
-	#ingame_menu_content,
-	#popin_eventDlg,
-	#friend-menu,
-	#login-menu,
-	.standard_popin,
-	.comment:not(.comment--without-parentheses),
-	.chatwindowlogs_zone .roundedbox.chatlog.ownchatlog .roundedboxinner,
-	.notouch-device #topbar a.menu_item:hover,
-	#topbar a.navigation-button-active,
-	#pageheader_mobile_switcher_gamemode,
-	#pageheader_mobile_switcher,
-	#pageheader_mobile_switcher_lobbymode,
+  
+  #topbar,
+  #page-title,
+  .pageheader,
+  .roundedbox,
+  .pagesection__content,
+  .gamestate_gameEnd #page-title,
+  #server_status_warning_message,
+  .chatwindowlogs,
+  .chatwindowexpanded,
+  .notouch-device .chatwindowcollapsed:hover,
+  #maintitlebar_content,
+  .gamestart_overlay,
+  .bgabutton_gray:hover {
+    background: var(--main-content-bg);
+    background-color: var(--main-content-bg);
+    color: var(--text);
+  }
+  .tabbed_slider_bar_left,
+  .tabbed_slider_bar_right {
+    border-top: 28px solid var(--header-hover) !important;
+  }
+  .tabbed_slider_bar_barcenter {
+    background-color: var(--header-hover) !important;
+  }
+  
+  /* Header & nav */
+  .bga-menu-bar,
+  .bga-menu-subbar {
+    background: var(--header-bg) !important;
+    color: var(--text) !important;
+  }
+  
+  /* Dialog boxes, modals etc. */
+  .portlet,
+  .tips,
+  .player-board,
+  #ingame_menu_content,
+  #popin_eventDlg,
+  #friend-menu,
+  #login-menu,
+  .standard_popin,
+  .comment:not(.comment--without-parentheses),
+  .chatwindowlogs_zone .roundedbox.chatlog.ownchatlog .roundedboxinner,
+  .notouch-device #topbar a.menu_item:hover,
+  #topbar a.navigation-button-active,
+  #pageheader_mobile_switcher_gamemode,
+  #pageheader_mobile_switcher,
+  #pageheader_mobile_switcher_lobbymode,
 	.pageheader_big_switch_dropdown,
 	.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem,
-	.chatwindowavatar .avatarwrap,
-	.gamelist_item {
-	background-color: var(--popover-bg);
-	color: var(--text);
-	border: 1px solid var(--color-border-default);
-	
-	/* fix for overlay image comment section*/
-	background-image: none;
-	}
+  .chatwindowavatar .avatarwrap,
+  .gamelist_item {
+    background-color: var(--popover-bg);
+    color: var(--text);
+    border: 1px solid var(--color-border-default);
+  
+    /* fix for overlay image comment section*/
+    background-image: none;
+  }
 	
 	/* Buttons */
 	
 	if (mainTheme != 1) {
-		.bgabutton_blue, .bga-popup-modal__header.svelte-1gmp0d8.svelte-1gmp0d8, #faq_topbutton, .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button, .bga-dropdown.svelte-1ucf0sb .bga-dropdown-button-split.svelte-1ucf0sb {
+		.bgabutton_blue, .bga-popup-modal__header, #faq_topbutton, .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button, .bga-dropdown-button-split:not(.bga-game-filter-panel__input-blocks.svelte-1na0la9 > div > div > div > div > div), .bga-button--blue, .bga-button--purple, .bga-button--yellow, .bga-button--teal {
 			background: linear-gradient((mainTheme==4) ? #8c370d : var(--button-hover), (mainTheme==4) ? #592308 : var(--link2)) !important;
+			border-bottom: none !important;
 		}
-		.bgabutton_blue:hover, .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover {
+		.bgabutton_blue:hover, .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover, .bga-button--blue:hover, .bga-button--purple:hover, .bga-button--teal:hover {
 			background: linear-gradient((mainTheme==4) ? #a3410f : var(--button), (mainTheme==4) ? #652308 : var(--link2)) !important;
 		}
 	}
@@ -1120,98 +1411,98 @@
 	} .newsblockshadow {
 		top: 70.5%;
 	}
-	
-	/*I noticed it on "You should go premium" warning on premium games*/
-	.bubblebanner {
-	background-color: #838322;
-	border: 1px solid #6d6565;
-	}
-	.bubblebanner::after {
-	border-color: #838322 transparent
-	}
-	
-	/* Page sections */
-	.gametable,
-	.pagesection h2,
-	.pagesection h3,
-	.portlet h2,
-	.portlet h3,
-	.notouch-device .gamelist_item:hover,
-	.chatwindowcollapsed,
-	.chatwindowlogs_zone .roundedbox.chatlog .roundedboxinner,
-	#switcher_zone,
-	#switcher_zone_gamemode,
-	#switcher_zone_lobbymode {
-	background: var(--section-bg);
-	color: var(--text);
-	}
-	.notouch-device .pageheader_menu_verylarge .pageheader_big_switch:hover #switcher_zone,
-	.pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch #switcher_zone {
-	background: var(--section-bg);
-	}
-	
-	.pagesection h3 a {
-	color: var(--text);
-	text-decoration: underline;
-	}
-	
-	.bgabutton_gray,
-	a.bgabutton_gray {
-	color: var(--text);
-	border-color: var(--color-border-default);
-	}
-	
-	.newbgatable th,
-	.newbgatable td,
-	#topbar #login-menu a,
-	#topbar a,
-	.chatwindowcollapsedtitle,
-	a.agenda-tournament-list__item,
-	a.agenda-tournament-list__item:hover,
-	.agenda-tournament-list__players-num,
-	.agenda-tournament-list__title,
-	.controlpanelmenu .panelmenuicon {
-	color: var(--text);
-	}
-	
-	.notouch-device .newbgatable tbody tr:hover td {
-	color: #4871b6;
-	}
-	
-	.wannaplayauto_button {
-	box-shadow: none;
-	}
-	.sectiontitle_dropdown_menu {
-	background: var(--section-bg);
-	}
-	.notouch-device .login-menu-item:hover {
-	background-color: var(--forum-hover);
-	}
-	.notouch-device .bgabutton_gray:hover {
-	background-color: var(--link2);
-	color: var(--text3) !important;
-	}
-	.pagesection__content,
-	.portlet__content,
-	.tips__content {
-	background-color: var(--section-bg);
-	}
-	#headlines-module #follow_us_portlet a span,
-	#news-module #follow_us_portlet a span {
-	color: var(--text);
-	}
-	.bga-player-menu {
-	background-color: rgba(20,20,30, 1);
-	}
-	.text-red-500 {
-	color: rgb(220,20,20);
-	}
-	.hover\:text-red-400:hover {
-	color: rgb(236,65,64);
-	}
-	div.bg-bga-gray-211:nth-child(1) {
-	background-color: var(--page-bg2) !important;
-	}
+  
+  /*I noticed it on "You should go premium" warning on premium games*/
+  .bubblebanner {
+    background-color: #838322;
+    border: 1px solid #6d6565;
+  }
+  .bubblebanner::after {
+    border-color: #838322 transparent
+  }
+  
+  /* Page sections */
+  .gametable,
+  .pagesection h2,
+  .pagesection h3,
+  .portlet h2,
+  .portlet h3,
+  .notouch-device .gamelist_item:hover,
+  .chatwindowcollapsed,
+  .chatwindowlogs_zone .roundedbox.chatlog .roundedboxinner,
+  #switcher_zone,
+  #switcher_zone_gamemode,
+  #switcher_zone_lobbymode {
+    background: var(--section-bg);
+    color: var(--text);
+  }
+  .notouch-device .pageheader_menu_verylarge .pageheader_big_switch:hover #switcher_zone,
+  .pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch #switcher_zone {
+    background: var(--section-bg);
+  }
+  
+  .pagesection h3 a {
+    color: var(--text);
+    text-decoration: underline;
+  }
+  
+  .bgabutton_gray,
+  a.bgabutton_gray {
+    color: var(--text);
+    border-color: var(--color-border-default);
+  }
+  
+  .newbgatable th,
+  .newbgatable td,
+  #topbar #login-menu a,
+  #topbar a,
+  .chatwindowcollapsedtitle,
+  a.agenda-tournament-list__item,
+  a.agenda-tournament-list__item:hover,
+  .agenda-tournament-list__players-num,
+  .agenda-tournament-list__title,
+  .controlpanelmenu .panelmenuicon {
+    color: var(--text);
+  }
+  
+  .notouch-device .newbgatable tbody tr:hover td {
+    color: #4871b6;
+  }
+  
+  .wannaplayauto_button {
+    box-shadow: none;
+  }
+  .sectiontitle_dropdown_menu {
+    background: var(--section-bg);
+  }
+  .notouch-device .login-menu-item:hover {
+    background-color: var(--forum-hover);
+  }
+  .notouch-device .bgabutton_gray:hover {
+    background-color: var(--link2);
+    color: var(--text3) !important;
+  }
+  .pagesection__content,
+  .portlet__content,
+  .tips__content {
+    background-color: var(--section-bg);
+  }
+  #headlines-module #follow_us_portlet a span,
+  #news-module #follow_us_portlet a span {
+    color: var(--text);
+  }
+  .bga-player-menu {
+    background-color: rgba(20,20,30, 1);
+  }
+  .text-red-500 {
+    color: #c20808;
+  }
+  [class*="hover:text-red-400"]:hover {
+    color: #f50c0a;
+  }
+  div.bg-bga-gray-211:nth-child(1) {
+    background-color: var(--page-bg2) !important;
+  }
 	.notification-holder.notification-unread.svelte-1ikzr2c.svelte-1ikzr2c {
 		background-color: var(--highlight-bg);
 	}
@@ -1219,26 +1510,30 @@
 		--tw-gradient-from: var(--link) !important;
 	}
 	
-	/* Most dropdown boxes and text should be dark */
-	.tundra .dijitSelect .dijitSelectLabel,
-	.tundra .dijitMenu,
-	.tundra .dijitInputContainer,
-	.tundra .dijitSelect .dijitArrowButton,
-	.tundra .dijitMenuBa,
-	.tundra .dijitTextBox,
-	textarea, input, select {
-	background: var(--input-bg);
-	color: var(--text) !important;
+	.progressbar_white_background {
+		background-color: var(--section-bg2)
 	}
-	.tundra .dijitSelectOpened TD,
-	.tundra .dijitSelectHover {
-	background-color: var(--input-bg);
-	}
-	.tundra .dijitInline,
-	.tundra .dijitSelect,
-	.tundra .dijitMenu {
-	border-color: var(--color-border-default);
-	}
+	
+  /* Most dropdown boxes and text should be dark */
+  .tundra .dijitSelect .dijitSelectLabel,
+  .tundra .dijitMenu,
+  .tundra .dijitInputContainer,
+  .tundra .dijitSelect .dijitArrowButton,
+  .tundra .dijitMenuBa,
+  .tundra .dijitTextBox,
+  textarea, input, select {
+    background: var(--input-bg);
+    color: var(--text) !important;
+  }
+  .tundra .dijitSelectOpened TD,
+  .tundra .dijitSelectHover {
+    background-color: var(--input-bg);
+  }
+  .tundra .dijitInline,
+  .tundra .dijitSelect,
+  .tundra .dijitMenu {
+    border-color: var(--color-border-default);
+  }
 	.tundra .dijitSelect, .tundra .dijitSelect .dijitButtonContents, .tundra .dijitTextBox {
 		background: var(--input-bg) url(../js/dojoroot/dijit/themes/tundra/images/validationInputBg.png) repeat-x 0 0;
 	}
@@ -1285,39 +1580,50 @@
 	.text-gray-invitation.svelte-ebwhm1.svelte-ebwhm1 {
 		color: var(--text3) !important;
 	}
+  
+  /* Highlighted areas */
+  .pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem.pageheader_menuitemselected,
+  .bg-white {
+    background-color: var(--highlight-bg) !important;
+  }
+  
+  .notouch-device .pageheader_menu_verylarge,
+  .pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch {
+    background-color: var(--section-bg);
+  }
+  .notouch-device .pageheader_menuitem:hover {
+    color: var(--link) !important;
+  }
+  
+  .whiteblock {
+    background: #1e1e1e;
+  }
+  .notouch-device .ingame_menu_item:hover {
+    background-color: var(--i);
+  }
 	
-	/* Highlighted areas */
-	.pageheader_menu_verylarge .pageheader_big_switch_dropdown .pageheader_menuitem.pageheader_menuitemselected,
-	.bg-white {
-	background-color: var(--highlight-bg) !important;
+	::selection {
+		background-color: ((mainTheme==1) ? var(--button) : var(--button-hover));
+		color: #fff;
 	}
+  
+  /* Overlay over gamebox while loading */
+  #loader_mask {
+    background: #000;
+  }
+  
+  /* Background of progress bar */
+  [class^="roundedbox"] {
+    background: #1e1e1e !important;
+  }
 	
-	.notouch-device .pageheader_menu_verylarge,
-	.pageheader_menu_verylarge .dropdown_expanded .pageheader_big_switch {
-	background-color: var(--section-bg);
+  /* ==WIKI==*/
+	.toctogglelabel {
+		color: var(--link);
 	}
-	.notouch-device .pageheader_menuitem:hover {
-	color: var(--link) !important;
+	#contentSub, #contentSub2 {
+		color: #aaa;
 	}
-	
-	.whiteblock {
-	background: #1e1e1e;
-	}
-	.notouch-device .ingame_menu_item:hover {
-	background-color: var(--i);
-	}
-	
-	/* Overlay over gamebox while loading */
-	#loader_mask {
-	background: #000;
-	}
-	
-	/* Background of progress bar */
-	[class^="roundedbox"] {
-	background: #1e1e1e !important;
-	}
-	
-	/* ==WIKI==*/ 
 	#mw-page-base {
 		background-color: var(--main-bg-colour);
 		background-image: linear-gradient(to bottom, var(--header-bg) 50%, var(--main-bg-colour) 100%);
@@ -1349,6 +1655,9 @@
 		background-color: var(--main-bg-colour);
 		color: var(--text);
 	}
+    .mw-collapsible-content {
+        background-color: var(--section-bg) !important;
+    }
 	.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools .oo-ui-tool.oo-ui-widget-disabled.oo-ui-flaggedElement-primary > .oo-ui-tool-link, .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool.oo-ui-flaggedElement-primary > .oo-ui-tool-link {
 		background-color: var(--input-bg);
 		border-color: var(--color-border-default);
@@ -1439,7 +1748,7 @@
 		background-color: #136bb953;
 	}
 	.mw-body ul:not(.toc ul) {
-	list-style-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%225%22 height=%2213%22%3E %3Ccircle cx=%222.5%22 cy=%229%22 r=%222.5%22 fill=%22%23ccc%22/%3E %3C/svg%3E")
+  	list-style-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%225%22 height=%2213%22%3E %3Ccircle cx=%222.5%22 cy=%229%22 r=%222.5%22 fill=%22%23ccc%22/%3E %3C/svg%3E")
 	}
 	.oo-ui-icon-expand, .mw-ui-icon-expand::before {
 		background-image: linear-gradient(transparent,transparent),url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E %3Ctitle%3E expand %3C/title%3E %3Cpath d=%22M17.5 4.75l-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z%22 fill=%22%23ccc%22/%3E %3C/svg%3E");
@@ -1477,7 +1786,7 @@
 	.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover {
 		background-color: var(--highlight-bg) !important;
 		background-image: linear-gradient(to bottom, var(--popover-bg) 0%,#111 100%);
-		text-shadow: 1px 1px 0 #0007, -1px -1px 0 #0007, -1px -1px 0 rgba(214, 23, 68, .2);
+		/*text-shadow: 1px 1px 0 #0007, -1px -1px 0 #0007, -1px -1px 0 rgba(214, 23, 68, .2);*/
 	}
 	span.oo-ui-iconElement-icon:not(.oo-ui-icon-feedback):not(.oo-ui-icon-checkAll):not(.oo-ui-image-error.oo-ui-icon-error):not(.oo-ui-image-destructive.oo-ui-icon-unLink):not(.oo-ui-icon-expand):not(.oo-ui-icon-collapse):not(.oo-ui-image-invert.oo-ui-icon-stop), .oo-ui-indicator-down {
 		filter: invert(1) hue-rotate(180deg);
@@ -1500,7 +1809,7 @@
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .mw-rcfilters-ui-tagItemWidget-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		background-color: var(--text4);
 	} .ve-ce-linkAnnotation.ve-ce-annotation-active {
-	box-shadow: 0 0 0 1px #060708;
+  	box-shadow: 0 0 0 1px #060708;
 		background-color: var(--forum-hover);
 	} .ve-ce-attachedRootNode::selection, .ve-ce-attachedRootNode ::selection {
 		background: var(--popover-bg);
@@ -1527,29 +1836,29 @@
 		background-color: #ad8406;
 	}
 	.mw-rcfilters-ui-changesListWrapperWidget li.mw-rcfilters-highlight-color-c2, .mw-rcfilters-ui-changesListWrapperWidget .mw-rcfilters-highlight-color-c2 tr:first-child, .mw-rcfilters-ui-changesListWrapperWidget tr.mw-rcfilters-highlight-color-c2.mw-rcfilters-ui-highlights-enhanced-toplevel:not(.mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey) td:not(:nth-child(-n+2)), .mw-rcfilters-ui-changesListWrapperWidget tr.mw-rcfilters-highlight-color-c2.mw-rcfilters-ui-highlights-enhanced-nested:not(.mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey) td:not(:nth-child(-n+4)) {
-	background-color: #0c725d;
-	}
+  	background-color: #0c725d;
+}
 	.mw-rcfilters-ui-changesListWrapperWidget li.mw-rcfilters-highlight-color-c1, .mw-rcfilters-ui-changesListWrapperWidget .mw-rcfilters-highlight-color-c1 tr:first-child, .mw-rcfilters-ui-changesListWrapperWidget tr.mw-rcfilters-highlight-color-c1.mw-rcfilters-ui-highlights-enhanced-toplevel:not(.mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey) td:not(:nth-child(-n+2)), .mw-rcfilters-ui-changesListWrapperWidget tr.mw-rcfilters-highlight-color-c1.mw-rcfilters-ui-highlights-enhanced-nested:not(.mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey) td:not(:nth-child(-n+4)) {
-	background-color: #08338b;
-	}
+  	background-color: #08338b;
+}
 	
 	.mw-body div[style*="background:#fffc;"] {
 		background: #000c !important;
 	}
 	
 	.mw-datatable td, .wikitable {
-	background-color: var(--main-content-bg);
+  	background-color: var(--main-content-bg);
 		border-color: var(--color-border-default);
 	}
 	.wikitable > tr > th, .wikitable > * > tr > th {
 		background-color: var(--main-content-bg);
 	}
 	.mw-datatable tr:hover td {
-	background-color: var(--forum-hover);
+  	background-color: var(--forum-hover);
 		border-color: var(--color-border-default);
 	}
 	.mw-datatable th {
-	background-color: var(--header-bg2);
+  	background-color: var(--header-bg2);
 		border-color: var(--color-border-default);
 		background-image: linear-gradient(transparent,transparent),url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2221%22 height=%229%22 viewBox=%220 0 21 9%22%3E %3Cpath d=%22M14.5 5l-4 4-4-4zm0-1l-4-4-4 4z%22 fill=%22%23ccc%22/%3E %3C/svg%3E") !important;
 	}
@@ -1560,8 +1869,8 @@
 		background-image: linear-gradient(transparent,transparent),url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2221%22 height=%224%22 viewBox=%220 0 21 4%22%3E %3Cpath d=%22M14.5 0l-4 4-4-4z%22 fill=%22%23ccc%22/%3E %3C/svg%3E") !important;
 	}
 	code {
-	color: var(--text3);
-	background-color: var(--popover-bg);
+  	color: var(--text3);
+  	background-color: var(--popover-bg);
 		border-color: var(--color-border-default);
 	}
 	.oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
@@ -1578,6 +1887,10 @@
 	}
 	.mw-notification {
 		color: var(--text);
+	}
+	
+	div[class*="navigation"][style*="background: #fff"] {
+		background-color: var(--section-bg2) !important;
 	}
 	
 	/*Preferences*/
@@ -1599,8 +1912,8 @@
 		content: ((easterEgg=='all' || easterEgg=='clover') ? '🍀' : ' ');
 	}
 	.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
-	background-color: var(--forum-hover);
-	color: var(--text);
+  	background-color: var(--forum-hover);
+  	color: var(--text);
 	}
 	.mw-email-none .oo-ui-labelWidget {
 		background-color: var(--main-content-bg);
@@ -1615,7 +1928,10 @@
 	}
 	
 	
-	/* ==FORUMS== */
+  /* ==FORUMS== */
+    .copyright {
+        color: var(--text2)
+    }
 	.post:target .content {
 		color: var(--text);
 		background: var(--main-bg-colour);
@@ -1669,7 +1985,10 @@
 		-webkit-box-shadow: 0 0 0 1px #000 inset;
 	}
 	.search-box .inputbox, .search-box .inputbox:hover, .search-box .inputbox:focus {
-		border-color: var(--color-border-default);
+		border-color: var(--color-border-default) !important;
+	}
+	.inputbox:focus, .inputbox:hover {
+		border-color: var(--link)
 	}
 	.dropdown .dropdown-contents {
 		background: var(--page-bg2);
@@ -1718,6 +2037,17 @@
 		background-color: var(--forum-hover);
 		color: #fff;
 	}
+	.postprofile {
+		color: var(--text2);
+	}
+	.button-secondary:focus, .button-secondary:hover, .button:focus .icon, .button:hover .icon {
+		color: var(--link);
+	}
+    
+    /* warning */
+    .warning_portlet .portlet__content {
+        background-color: #442020;
+    }
 	
 	/*Search options*/
 	.panel:not(.player_board_content > div) {
@@ -1767,9 +2097,46 @@
 		border: 1px solid var(--color-border-default);
 		box-shadow: 2px 2px 3px var(--highlight-bg);
 	}
-	.postlink:hover {
-		background-color: #D0E4F61a;
+	.section-viewtopic .postlink {
+		border-bottom-color: var(--link);
 	}
+	.section-viewtopic .postlink:hover {
+		background-color: #D0E4F61a;
+		text-decoration: ((linksType==0) ? none : underline)
+	}
+	if(linksType!=1) {
+		.phpbb_iframed a:not(.username):hover {
+			text-decoration: ((linksType==0) ? none : underline);
+			color: var(--button-hover) !important;
+		}
+		.username {
+			color: var(--button) !important;
+		}
+		.username:hover {
+			text-decoration: ((linksType==0) ? none : underline) !important;
+			color: var(--button) !important;
+			filter: brightness(.75) saturate(1.4) !important;
+		}
+		
+		.button:hover .fa-reply::before {
+			color: var(--button-hover) !important;
+		}
+	}
+    table.zebra-list tr:nth-child(2n+1) td, ul.zebra-list li:nth-child(2n+1) {
+        background-color: var(--section-bg2)
+    }
+    table.zebra-list tr:nth-child(2n) td {
+        background-color: var(--section-bg)
+    }
+    .panel-container table.table1 thead th {
+        color: var(--text)
+    }
+    table.table1 td {
+        color: var(--text)
+    }
+    table.table1 tbody tr, table.table1 tbody td {
+        border-color: var(--color-border-default)
+    }
 	
 	/*User Control Panel*/
 	dl.details dt{
@@ -1787,9 +2154,6 @@
 	}
 	.content h2, .panel h2 {
 		color: #fff;
-	}
-	.fa-trash::before {
-		filter: invert(0.9);
 	}
 	.message-box textarea, .panel-container .panel li.header dd, .panel-container .panel li.header dt {
 		color: var(--text);
@@ -1812,123 +2176,123 @@
 		background-color: #36404d;
 	}
 	
-	/* === GAME SPECIFIC STUFF === */
-	/* == STONE AGE == */
-	/* Tooltip color (Stoneage) */
-	.dijitTooltipContainer {
-	background: var(--popover-bg) !important;
-	color: var(--text);
-	}
-	/* Overlay for dice related actions (Stoneage) */
-	#diceboard {
-	background: #000000;
-	}
-	/* == BANG == */
-	/* Popin changes (for Bang)*/
-	.bang_popin_wrapper {
-	background-color: rgba(40, 50, 80, .5);
-	}
-	
-	.bang_popin {
-	background-image: linear-gradient(180grad, var(--main-bg-colour), var(--main-bg-colour));
-	border: 3px solid #050057;
-	}
-	.bang_popin #dialog-title-container,
-	#popin_playersHelp #dialog-roles .dialog-role {
-	background: var(--header-bg2);
-	}
-	.bang_popin .bang_popin_closeicon {
-	background-color: #050057;
-	}
-	.bang_popin h2 {
-	color: var(--text);
-	}
-	#popin_playersHelp #dialog-players .dialog-character {
-	background: var(--header-bg);
-	}
-	#popin_playersHelp #dialog-players .dialog-character .dialog-player-name {
-	background: var(--header-bg2);
-	border-bottom: 1px solid rgba(0, 0, 0, .4);
-	}
-	
-	/* Darker player decks (for Bang) */
-	div#board #table #table-container,
-	.bang-player .bang-player-container {
-	background-color: rgba(100, 100, 100, 0.3);
-	}
-	div#hand {
-	background-color: rgba(100, 100, 100, 0.4);
-	}
-	div.bang-card .card-front .card-copy {
-	text-shadow: 1px 1px #333, -1px -1px 1px #333, -1px 1px 1px #333, 1px -1px 1px #333
-	}
-	div#hand div#role-container {
-	background-color: #1c1d21;
-	}
-	.player-board .player-role {
-	filter: invert(1);
-	}
-	.bang-player .bang-player-container .player-info .player-star,
-	.bang-player-board .player-cards .player-hand-card,
-	.bang-player .player-cards .player-hand-card {
-	filter: invert(0.8);
-	}
-	div#hand div#role-container div#role-card div#role-name,
-	div#hand div#role-container div#role-card div#role-text {
-	color: var(--input-bg);
-	}
-	/*Replacing cards with dark-themed images (for Bang) */
-	div.bang-card .card-front,
-	.player-info {
-	background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/dark-bang-cards.png);
-	}
-	div.bang-card .card-front .card-background {
-	background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/dark-bang-cards2.png);
-	}
-	.player-info .player-character-background {
-	background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bang-characters.png);
-	}
-	div#board #table #table-container #deck {
-	background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bang-card-back.png);
-	}
-	#settings-controls-container .row-data .row-label {
-	color: var(--text);
-	}
-	
-	/* ==SUSHI GO!=== */
-	/*Text background*/
-	.block_title {
-	background-image: linear-gradient(180deg, hsla(0, 0%, 0%, .75), hsla(0, 0%, 0%, .75));
-	}
-	.tooltip_card_text {
-	background-color: hsla(0, 0%, 0%, .75);
-	}
-	.tooltip_card_text table {
-	background-color: var(--section-bg);
-	}
-	/*Popup*/
-	.tableWindow td {
-	color: #5656a4
-	}
-	.tableWindow tbody tr:hover td {
-	color: #8a8ac6
-	}
-	.sgresult_header {
-	text-shadow: 3px 0 3px #333, 0 -3px 3px #333, 0 3px 3px #333, -3px 0 3px #333;
-	background-color: #8b6b0d
-	}
-	
-	/* ==LOVE LETTER== */
-	.discussion_bubble {
-	background: var(--popover-bg);
-	color: var(--text);
-	}
-	.discussion_bubble::after {
-	border-color: var(--popover-bg) transparent;
-	}
-	.player-board.roundedboxdisabled {
-	background-color: var(--header-bg);
-	}
+  /* === GAME SPECIFIC STUFF === */
+  /* == STONE AGE == */
+  /* Tooltip color (Stoneage) */
+  .dijitTooltipContainer {
+    background: var(--popover-bg) !important;
+    color: var(--text);
+  }
+  /* Overlay for dice related actions (Stoneage) */
+  #diceboard {
+    background: #000000;
+  }
+  /* == BANG == */
+  /* Popin changes (for Bang)*/
+  .bang_popin_wrapper {
+    background-color: rgba(40, 50, 80, .5);
+  }
+  
+  .bang_popin {
+    background-image: linear-gradient(180grad, var(--main-bg-colour), var(--main-bg-colour));
+    border: 3px solid #050057;
+  }
+  .bang_popin #dialog-title-container,
+  #popin_playersHelp #dialog-roles .dialog-role {
+    background: var(--header-bg2);
+  }
+  .bang_popin .bang_popin_closeicon {
+    background-color: #050057;
+  }
+  .bang_popin h2 {
+    color: var(--text);
+  }
+  #popin_playersHelp #dialog-players .dialog-character {
+    background: var(--header-bg);
+  }
+  #popin_playersHelp #dialog-players .dialog-character .dialog-player-name {
+    background: var(--header-bg2);
+    border-bottom: 1px solid rgba(0, 0, 0, .4);
+  }
+  
+  /* Darker player decks (for Bang) */
+  div#board #table #table-container,
+  .bang-player .bang-player-container {
+    background-color: rgba(100, 100, 100, 0.3);
+  }
+  div#hand {
+    background-color: rgba(100, 100, 100, 0.4);
+  }
+  div.bang-card .card-front .card-copy {
+    text-shadow: 1px 1px #333, -1px -1px 1px #333, -1px 1px 1px #333, 1px -1px 1px #333
+  }
+  div#hand div#role-container {
+    background-color: #1c1d21;
+  }
+  .player-board .player-role {
+    filter: invert(1);
+  }
+  .bang-player .bang-player-container .player-info .player-star,
+  .bang-player-board .player-cards .player-hand-card,
+  .bang-player .player-cards .player-hand-card {
+    filter: invert(0.8);
+  }
+  div#hand div#role-container div#role-card div#role-name,
+  div#hand div#role-container div#role-card div#role-text {
+    color: var(--input-bg);
+  }
+  /*Replacing cards with dark-themed images (for Bang) */
+  div.bang-card .card-front,
+  .player-info {
+    background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/dark-bang-cards.png);
+  }
+  div.bang-card .card-front .card-background {
+    background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/dark-bang-cards2.png);
+  }
+  .player-info .player-character-background {
+    background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bang-characters.png);
+  }
+  div#board #table #table-container #deck {
+    background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/bang-card-back.png);
+  }
+  #settings-controls-container .row-data .row-label {
+    color: var(--text);
+  }
+  
+  /* ==SUSHI GO!=== */
+  /*Text background*/
+  .block_title {
+    background-image: linear-gradient(180deg, hsla(0, 0%, 0%, .75), hsla(0, 0%, 0%, .75));
+  }
+  .tooltip_card_text {
+    background-color: hsla(0, 0%, 0%, .75);
+  }
+  .tooltip_card_text table {
+    background-color: var(--section-bg);
+  }
+  /*Popup*/
+  .tableWindow td {
+    color: #5656a4
+  }
+  .tableWindow tbody tr:hover td {
+    color: #8a8ac6
+  }
+  .sgresult_header {
+    text-shadow: 3px 0 3px #333, 0 -3px 3px #333, 0 3px 3px #333, -3px 0 3px #333;
+    background-color: #8b6b0d
+  }
+  
+  /* ==LOVE LETTER== */
+  .discussion_bubble {
+    background: var(--popover-bg);
+    color: var(--text);
+  }
+  .discussion_bubble::after {
+    border-color: var(--popover-bg) transparent;
+  }
+  .player-board.roundedboxdisabled {
+    background-color: var(--header-bg);
+  }
 	#ll_background {
 		background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/LoveLetterBg.png);
 	}
@@ -1956,12 +2320,12 @@
 	#explanation_card, #explanation_card2 {
 		background: none;
 	}
-	#explanation_card_content,
-	#explanation_card_content2 {
-	color: var(--text) !important;
+  #explanation_card_content,
+  #explanation_card_content2 {
+    color: var(--text) !important;
 		position: relative;
 		z-index: 1;
-	}
+  }
 	.playertablecard .stockitem {
 		box-shadow: 5px 5px 5px #353535;
 	}
@@ -1975,76 +2339,76 @@
 		height: 220px;
 		margin-bottom: 30px;
 	}
-	.playertable_cover {
-	background-color: #0001;
-	}
+  .playertable_cover {
+    background-color: #0001;
+  }
 	.playertable.selectable_playertable {
 		background-color: #0008;
 	}
-	.outOfTheRound {
-	background-color: #111e !important;
-	}
-	.cardtitle {
-	color: var(--main-bg-colour);
-	}
+  .outOfTheRound {
+    background-color: #111e !important;
+  }
+  .cardtitle {
+    color: var(--main-bg-colour);
+  }
 	.player_sycophant {
 		color: var(--text);
 	}
 	.playertablename[style*="color:#000000"] {
 		text-shadow: 0px 0px 10px #fff;
 	}
-	
-	/* ==CATAN== */
-	#cat_tradeawarenessconfig {
-	background: #4e411f;
-	}
-	#cat_tradeawareness_currentconf {
-	background: #696559;
-	}
-	.icon_devcard,
-	.icon_rescard,
-	.icon_path,
-	.icon_army {
-	filter: invert(0.85);
-	}
-	#player_boards .cat_panel_prim_icons .cat_panel_score {
-	filter: invert(1);
-	}
-	#player_boards .cat_stock_army,
-	#player_boards .cat_stock_path {
-	-webkit-filter: grayscale(0%);
-	filter: grayscale(0%) invert(0.85);
-	}
-	.cat_card_title,
-	.cat_card_text,
-	.fa-trash,
-	#cat_playertrade_button_update,
-	.cat_summary_text,
-	.cat_traderate,
-	#cat_summary_tr_title {
-	color: var(--main-bg-colour);
-	}
-	
-	/* ==BANDIDO== */
-	.cp_board_hand,
-	.map_zoom.map_zoom_in,
-	.map_zoom.map_zoom_out {
-	filter: invert(0.9)
-	}
-	.deck {
-	text-shadow: 5px 0 5px #222,0 -5px 5px #222,0 5px 5px #222,-5px 0 5px #222;
-	}
-	.possiblemove {
-	opacity: .2;
-	}
-	@media screen and (min-width:1150px) {
-	.row {
-	text-align: unset;
-	}
-	}
-	.manipulation-arrow {
-	filter: invert(0.9);
-	}
+  
+  /* ==CATAN== */
+  #cat_tradeawarenessconfig {
+    background: #4e411f;
+  }
+  #cat_tradeawareness_currentconf {
+    background: #696559;
+  }
+  .icon_devcard,
+  .icon_rescard,
+  .icon_path,
+  .icon_army {
+    filter: invert(0.85);
+  }
+  #player_boards .cat_panel_prim_icons .cat_panel_score {
+    filter: invert(1);
+  }
+  #player_boards .cat_stock_army,
+  #player_boards .cat_stock_path {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%) invert(0.85);
+  }
+  .cat_card_title,
+  .cat_card_text,
+  .fa-trash:not(.nav-footer > li > a > i),
+  #cat_playertrade_button_update,
+  .cat_summary_text,
+  .cat_traderate,
+  #cat_summary_tr_title {
+    color: var(--main-bg-colour);
+  }
+  
+  /* ==BANDIDO== */
+  .cp_board_hand,
+  .map_zoom.map_zoom_in,
+  .map_zoom.map_zoom_out {
+    filter: invert(0.9)
+  }
+  .deck {
+    text-shadow: 5px 0 5px #222,0 -5px 5px #222,0 5px 5px #222,-5px 0 5px #222;
+  }
+  .possiblemove {
+    opacity: .2;
+  }
+  @media screen and (min-width:1150px) {
+    .row {
+      text-align: unset;
+    }
+  }
+  .manipulation-arrow {
+    filter: invert(0.9);
+  }
 	.possiblemove {
 		background-color: ((easterEgg=='flood' || easterEgg=='all') ? #3072c8 : #fff);
 	}
@@ -2105,4 +2469,38 @@
 	div.dijitTooltipContainer.dijitTooltipContents > .midSizeDialog > img {
 		filter: invert(1);
 	}
+
+	/* ==GOOD COP BAD COP== */
+	.large_equipment_name {
+		background: none;
+		margin-top: 15px;
+		color: #444;
+	}
+	.large_equipment_effect:not(.dijitTooltip) {
+		position: inherit;
+		margin-top: -132px;
+	}
+	.dijitTooltip .large_equipment_effect {
+		margin-top: 209px;
+		color: #222;
+	}
+	.large_equipment_name > div {
+		background-image: url(https://raw.githubusercontent.com/OregSamSas/boardgamearena-darkmode/master/assets/images/GoodCopBadCop-equip_card_dark.png);
+		position: relative;
+		width: 240px;
+		height: 336px;
+		transform: translate(-20px, -33px);
+		border-radius: 10px;
+	}
+    
+    /* ==ITS A WONDERFUL WORLD== */
+    .iww-tab.iww-tab-selected {
+        background-color: var(--highlight-bg)
+    }
+    .iww-tab {
+        background-color: var(--section-bg)
+    }
+    .iww-tab:not(.iww-tab-selected):hover {
+        background-color: var(--forum-hover)
+    }
 }
